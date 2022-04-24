@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
 
         val viewModelFactory = MainViewModelFactory ( Repository() )
 
-
-
         val txt = findViewById<TextView>(R.id.txt)
 
         txt.setOnClickListener {
