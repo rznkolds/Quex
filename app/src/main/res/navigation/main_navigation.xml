@@ -7,22 +7,27 @@
 
     <fragment
         android:id="@+id/create"
-        android:name="com.rk.quex.Create"
+        android:name="com.rk.quex.pieces.Create"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" />
     <fragment
         android:id="@+id/enter"
-        android:name="com.rk.quex.Enter"
+        android:name="com.rk.quex.pieces.Enter"
         android:label="fragment_enter"
         tools:layout="@layout/fragment_enter" />
     <fragment
         android:id="@+id/home"
-        android:name="com.rk.quex.Home"
+        android:name="com.rk.quex.pieces.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.rk.quex.Profile"
+        android:name="com.rk.quex.pieces.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/comments"
+        android:name="com.rk.quex.Comments"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments" />
 </navigation>

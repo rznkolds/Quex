@@ -1,10 +1,11 @@
-package com.rk.quex
+package com.rk.quex.pieces
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rk.quex.R
 
 class Home : Fragment() {
 
