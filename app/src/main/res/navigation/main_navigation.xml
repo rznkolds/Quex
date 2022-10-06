@@ -10,4 +10,9 @@
         android:name="com.rk.quex.Create"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" />
+    <fragment
+        android:id="@+id/enter"
+        android:name="com.rk.quex.Enter"
+        android:label="fragment_enter"
+        tools:layout="@layout/fragment_enter" />
 </navigation>
