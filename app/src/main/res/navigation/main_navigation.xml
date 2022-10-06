@@ -20,4 +20,9 @@
         android:name="com.rk.quex.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.rk.quex.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
