@@ -15,4 +15,9 @@
         android:name="com.rk.quex.Enter"
         android:label="fragment_enter"
         tools:layout="@layout/fragment_enter" />
+    <fragment
+        android:id="@+id/home"
+        android:name="com.rk.quex.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
