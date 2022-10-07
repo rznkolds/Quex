@@ -7,8 +7,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".pieces.Enter">
 
+    <TextView
+        android:id="@+id/create_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/enter"
+        app:layout_constraintStart_toStartOf="@+id/enter"
+        app:layout_constraintTop_toBottomOf="@+id/enter" />
+
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView"
+        android:id="@+id/enter_animation"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="80dp"
@@ -34,16 +48,16 @@
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
-        app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
-        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"
+        app:layout_constraintEnd_toEndOf="@+id/enter_animation"
+        app:layout_constraintStart_toStartOf="@+id/enter_animation"
+        app:layout_constraintTop_toBottomOf="@+id/enter_animation"
         tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/enter_password"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/plain_text"
         android:ems="10"
         android:hint="@string/password"
@@ -59,9 +73,9 @@
         tools:ignore="RtlSymmetry,TextFields" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/enter"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/enter_button"
         android:text="@string/login"

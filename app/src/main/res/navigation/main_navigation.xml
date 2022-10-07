@@ -6,7 +6,7 @@
     app:startDestination="@id/enter">
 
     <fragment
-        android:id="@+id/create"
+        android:id="@+id/account_create"
         android:name="com.rk.quex.pieces.Create"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" >
@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_enter" >
         <action
             android:id="@+id/action_enter_to_create"
-            app:destination="@id/create" />
+            app:destination="@id/account_create" />
         <action
             android:id="@+id/action_enter_to_home"
             app:destination="@id/home" />
@@ -36,10 +36,10 @@
             app:destination="@id/comments" />
         <action
             android:id="@+id/action_home_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/account_profile" />
     </fragment>
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/account_profile"
         android:name="com.rk.quex.pieces.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
@@ -53,7 +53,7 @@
             app:destination="@id/answers" />
         <action
             android:id="@+id/action_comments_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/account_profile" />
     </fragment>
     <fragment
         android:id="@+id/answers"
@@ -62,6 +62,6 @@
         tools:layout="@layout/fragment_answers" >
         <action
             android:id="@+id/action_answers_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/account_profile" />
     </fragment>
 </navigation>

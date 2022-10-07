@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="login">LOG IN</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="account_name">Acoount name</string>
+    <string name="account_text">Account text</string>
+    <string name="create">Create</string>
+    <string name="register">Don\'t have an account ? Then register</string>
 </resources>
