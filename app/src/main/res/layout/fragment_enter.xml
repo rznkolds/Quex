@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".pieces.Enter">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/blockchain" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/enter_id"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/plain_text"
+        android:ems="10"
+        android:hint="@string/e_mail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/enter_password"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/plain_text"
+        android:ems="10"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="@+id/enter_id"
+        app:layout_constraintStart_toStartOf="@+id/enter_id"
+        app:layout_constraintTop_toBottomOf="@+id/enter_id"
+        tools:ignore="RtlSymmetry,TextFields" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/enter_button"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/enter_password"
+        app:layout_constraintStart_toStartOf="@+id/enter_password"
+        app:layout_constraintTop_toBottomOf="@+id/enter_password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,23 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/create">
+    app:startDestination="@id/enter">
 
     <fragment
         android:id="@+id/create"
         android:name="com.rk.quex.pieces.Create"
         android:label="fragment_create"
-        tools:layout="@layout/fragment_create" />
+        tools:layout="@layout/fragment_create" >
+        <action
+            android:id="@+id/action_create_to_home"
+            app:destination="@id/home" />
+    </fragment>
     <fragment
         android:id="@+id/enter"
         android:name="com.rk.quex.pieces.Enter"
         android:label="fragment_enter"
-        tools:layout="@layout/fragment_enter" />
+        tools:layout="@layout/fragment_enter" >
+        <action
+            android:id="@+id/action_enter_to_create"
+            app:destination="@id/create" />
+        <action
+            android:id="@+id/action_enter_to_home"
+            app:destination="@id/home" />
+    </fragment>
     <fragment
         android:id="@+id/home"
         android:name="com.rk.quex.pieces.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_comments"
+            app:destination="@id/comments" />
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.rk.quex.pieces.Profile"
@@ -29,10 +47,21 @@
         android:id="@+id/comments"
         android:name="com.rk.quex.Comments"
         android:label="fragment_comments"
-        tools:layout="@layout/fragment_comments" />
+        tools:layout="@layout/fragment_comments" >
+        <action
+            android:id="@+id/action_comments_to_answers"
+            app:destination="@id/answers" />
+        <action
+            android:id="@+id/action_comments_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/answers"
         android:name="com.rk.quex.Answers"
         android:label="fragment_answers"
-        tools:layout="@layout/fragment_answers" />
+        tools:layout="@layout/fragment_answers" >
+        <action
+            android:id="@+id/action_answers_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
 </navigation>
