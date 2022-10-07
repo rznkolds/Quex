@@ -17,9 +17,9 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/account_create"
-        app:layout_constraintStart_toStartOf="@+id/account_create"
-        app:layout_constraintTop_toBottomOf="@+id/account_create" />
+        app:layout_constraintEnd_toEndOf="@+id/create"
+        app:layout_constraintStart_toStartOf="@+id/create"
+        app:layout_constraintTop_toBottomOf="@+id/create" />
 
     <TextView
         android:id="@+id/create_account"
@@ -90,7 +90,7 @@
         tools:ignore="RtlSymmetry,TextFields" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/account_create"
+        android:id="@+id/create"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
