@@ -21,7 +21,7 @@
         app:lottie_rawRes="@raw/blockchain" />
 
     <EditText
-        android:id="@+id/enter_id"
+        android:id="@+id/enter_email"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
@@ -53,9 +53,9 @@
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/enter_id"
-        app:layout_constraintStart_toStartOf="@+id/enter_id"
-        app:layout_constraintTop_toBottomOf="@+id/enter_id"
+        app:layout_constraintEnd_toEndOf="@+id/enter_email"
+        app:layout_constraintStart_toStartOf="@+id/enter_email"
+        app:layout_constraintTop_toBottomOf="@+id/enter_email"
         tools:ignore="RtlSymmetry,TextFields" />
 
     <androidx.appcompat.widget.AppCompatButton

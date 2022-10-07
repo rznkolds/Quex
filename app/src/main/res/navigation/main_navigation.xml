@@ -15,7 +15,8 @@
             app:destination="@id/home" />
         <action
             android:id="@+id/action_create_to_enter"
-            app:destination="@id/enter" />
+            app:destination="@id/enter"
+            app:popUpTo="@id/enter" />
     </fragment>
     <fragment
         android:id="@+id/enter"
@@ -24,10 +25,12 @@
         tools:layout="@layout/fragment_enter" >
         <action
             android:id="@+id/action_enter_to_create"
-            app:destination="@id/create" />
+            app:destination="@id/create"
+            app:popUpTo="@id/create" />
         <action
             android:id="@+id/action_enter_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:popUpTo="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/home"
