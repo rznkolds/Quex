@@ -2,11 +2,11 @@ package com.rk.quex.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.rk.quex.repository.EnterRepo
+import com.rk.quex.data.repository.MembershipRepo
 
 class EnterViewModel : ViewModel() {
 
-    private var enterRepo = EnterRepo()
+    private var enterRepo = MembershipRepo()
 
     fun loginUser(email: String, password: String): MutableLiveData<Boolean> {
 
