@@ -13,13 +13,13 @@ import com.google.firebase.ktx.Firebase
 import com.rk.quex.R
 import com.rk.quex.databinding.FragmentEnterBinding
 import com.rk.quex.viewmodels.EnterViewModel
-import com.rkapp.fakechat.control.Connection
+import com.rk.quex.network.Connection
 
 class Enter : Fragment() {
 
     private lateinit var binding: FragmentEnterBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = FragmentEnterBinding.inflate(inflater, container, false)
 

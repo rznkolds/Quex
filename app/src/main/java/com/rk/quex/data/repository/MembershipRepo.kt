@@ -1,7 +1,6 @@
 package com.rk.quex.data.repository
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -28,7 +27,7 @@ class MembershipRepo {
 
                     val user = User(auth.currentUser.toString(), name, text, p.toString())
 
-                    Retrofit.userApi().postUser(user).enqueue(object : Callback<String> {
+                    Retrofit.user().postUser(user).enqueue(object : Callback<String> {
 
                         override fun onResponse(call: Call<String>, response: Response<String>) {
 

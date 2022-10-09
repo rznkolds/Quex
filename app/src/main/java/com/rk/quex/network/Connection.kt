@@ -1,4 +1,4 @@
-package com.rkapp.fakechat.control
+package com.rk.quex.network
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -3,10 +3,10 @@ package com.rk.quex.data.remote
 import com.rk.quex.data.model.User
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.GET
+import retrofit2.http.POST
 
-interface CoinApi {
+interface UserService {
 
-    @GET("currencies/ticker")
+    @POST("save")
     fun postUser(@Body user: User): Call<String>
 }

@@ -1,24 +1,24 @@
 package com.rk.quex.common
 
 import com.google.gson.GsonBuilder
-import com.rk.quex.data.remote.CoinApi
-import com.rk.quex.data.remote.UserApi
+import com.rk.quex.data.remote.CoinService
+import com.rk.quex.data.remote.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 object Retrofit {
 
-    fun userApi(): UserApi {
+    fun user(): UserService {
 
-        val user: UserApi by lazy { retrofit(Constants.BASE_USER_URL).create(UserApi::class.java) }
+        val user: UserService by lazy { retrofit(Constants.BASE_USER_URL).create(UserService::class.java) }
 
         return user
     }
 
-    fun coinApi(): CoinApi {
+    fun coin(): CoinService {
 
-        val coin: CoinApi by lazy { retrofit(Constants.BASE_COIN_URL).create(CoinApi::class.java) }
+        val coin: CoinService by lazy { retrofit(Constants.BASE_COIN_URL).create(CoinService::class.java) }
 
         return coin
     }
