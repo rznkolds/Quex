@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "883077807713",
+    "project_id": "quex-9013",
+    "storage_bucket": "quex-9013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883077807713:android:c268789501f8ec0d7e7420",
+        "android_client_info": {
+          "package_name": "com.rk.quex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883077807713-pvsh7q96o0kfnj3n2adkactjv31v8eem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdFg0tZYhJB4iHCTyXXAV7rQ5L0RJG5Kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883077807713-pvsh7q96o0kfnj3n2adkactjv31v8eem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
