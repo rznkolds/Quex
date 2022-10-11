@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.R
 import com.rk.quex.databinding.FragmentCreateBinding
 import com.rk.quex.viewmodels.CreateViewModel
@@ -23,7 +22,11 @@ class Create : Fragment() {
     private lateinit var binding: FragmentCreateBinding
     private var picture: Uri? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = FragmentCreateBinding.inflate(inflater, container, false)
 
@@ -33,7 +36,7 @@ class Create : Fragment() {
 
                 picture = it.data?.data
 
-                Glide.with(this).load(picture).diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.accountProfile)
+                Glide.with(this).load(picture).into(binding.accountProfile)
             }
         }
 
