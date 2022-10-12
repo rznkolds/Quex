@@ -7,9 +7,9 @@ class Connection {
 
     fun network(context: Context): Boolean {
 
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivity = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        val active = connectivityManager.activeNetwork
+        val active = connectivity.activeNetwork
 
         return active != null
     }
