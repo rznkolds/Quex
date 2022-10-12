@@ -52,53 +52,62 @@ class Create : Fragment() {
 
         binding.create.setOnClickListener {
 
-            if (binding.accountProfile.drawable != null) {
-
-                if (binding.accountName.text.isNotEmpty() &&
-                    binding.accountText.text.isNotEmpty() &&
-                    binding.accountEmail.text.isNotEmpty() &&
-                    binding.accountPassword.text.isNotEmpty()
-                ) {
-
-                    val vm = ViewModelProvider(this)[CreateViewModel::class.java]
-
-                    vm.createUser(
-                        binding.accountName.text.toString(),
-                        binding.accountText.text.toString(),
-                        binding.accountEmail.text.toString(),
-                        binding.accountPassword.text.toString(),
-                        picture!!
-                    )
-
-                    vm.result.observe(this.requireActivity()) {
-
-                        if (it.equals(true)) {
-
-                            this.findNavController().navigate(R.id.action_create_to_home)
-
-                        } else {
-
-                            toast("Kullanıcı Tanımlama Geçersiz")
-                        }
-                    }
-
-                } else {
-
-                    toast("Bos alanları doldurun")
-                }
-
-            } else {
-
-                toast("Bir resim belirtin")
-            }
+            create()
         }
 
         binding.enterScreen.setOnClickListener {
 
-            this.findNavController().navigate(R.id.action_create_to_enter)
+            val direction = CreateDirections.actionCreateToEnter()
+
+            this.findNavController().navigate(direction)
         }
 
         return binding.root
+    }
+
+    private fun create() {
+
+        if (binding.accountProfile.drawable != null) {
+
+            if (binding.accountName.text.isNotEmpty() &&
+                binding.accountText.text.isNotEmpty() &&
+                binding.accountEmail.text.isNotEmpty() &&
+                binding.accountPassword.text.isNotEmpty()
+            ) {
+
+                val vm = ViewModelProvider(this)[CreateViewModel::class.java]
+
+                vm.createUser(
+                    binding.accountName.text.toString(),
+                    binding.accountText.text.toString(),
+                    binding.accountEmail.text.toString(),
+                    binding.accountPassword.text.toString(),
+                    picture!!
+                )
+
+                vm.result.observe(this.requireActivity()) {
+
+                    if (it.equals(true)) {
+
+                        val direction = CreateDirections.actionCreateToHome()
+
+                        this.findNavController().navigate(direction)
+
+                    } else {
+
+                        toast("Kullanıcı Tanımlama Geçersiz")
+                    }
+                }
+
+            } else {
+
+                toast("Bos alanları doldurun")
+            }
+
+        } else {
+
+            toast("Bir resim belirtin")
+        }
     }
 
     private fun toast(text: String) {

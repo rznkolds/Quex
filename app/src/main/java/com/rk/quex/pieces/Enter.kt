@@ -19,7 +19,11 @@ class Enter : Fragment() {
 
     private lateinit var binding: FragmentEnterBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = FragmentEnterBinding.inflate(inflater, container, false)
 
@@ -36,7 +40,7 @@ class Enter : Fragment() {
 
         } else {
 
-            Toast.makeText(this.requireContext(), "İnternet bağlantınızı kontrol ediniz", Toast.LENGTH_SHORT).show()
+            toast("İnternet bağlantınızı kontrol ediniz")
         }
 
         binding.enter.setOnClickListener {
@@ -46,7 +50,9 @@ class Enter : Fragment() {
 
         binding.createScreen.setOnClickListener {
 
-            this.findNavController().navigate(R.id.action_enter_to_create)
+            val direction = EnterDirections.actionEnterToCreate()
+
+            this.findNavController().navigate(direction)
         }
 
         return binding.root
@@ -56,16 +62,26 @@ class Enter : Fragment() {
 
         val viewModel = ViewModelProvider(this)[EnterViewModel::class.java]
 
-        viewModel.loginUser(binding.enterEmail.text.toString(), binding.enterPassword.text.toString()).observe(this.requireActivity()) {
+        viewModel.loginUser(
+            binding.enterEmail.text.toString(),
+            binding.enterPassword.text.toString()
+        ).observe(this.requireActivity()) {
 
             if (it == true) {
 
-                this.findNavController().navigate(R.id.action_enter_to_home)
+                val direction = EnterDirections.actionEnterToHome()
+
+                this.findNavController().navigate(direction)
 
             } else {
 
-                Toast.makeText(this.requireContext(), "Hatalı E-mail veya Şifre", Toast.LENGTH_SHORT).show()
+                toast("Hatalı E-mail veya Şifre")
             }
         }
+    }
+
+    private fun toast(text: String) {
+
+        Toast.makeText(this.requireContext(), text, Toast.LENGTH_SHORT).show()
     }
 }

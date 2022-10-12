@@ -1,7 +1,5 @@
 package com.rk.quex.data.model
 
-import android.os.Parcelable
-
 data class User (
 
     val uid: String,

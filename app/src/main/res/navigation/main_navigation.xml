@@ -13,8 +13,7 @@
         <action
             android:id="@+id/action_create_to_home"
             app:destination="@id/home"
-            app:popUpTo="@id/home"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/home" />
         <action
             android:id="@+id/action_create_to_enter"
             app:destination="@id/enter"
@@ -33,8 +32,7 @@
         <action
             android:id="@+id/action_enter_to_home"
             app:destination="@id/home"
-            app:popUpTo="@id/home"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/home"
@@ -47,13 +45,19 @@
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_home_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/profile"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.rk.quex.pieces.Profile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/comments"
         android:name="com.rk.quex.pieces.Comments"
