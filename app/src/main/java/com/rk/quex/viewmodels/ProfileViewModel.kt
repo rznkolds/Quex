@@ -1,22 +1,48 @@
 package com.rk.quex.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Favorite
 import com.rk.quex.data.model.User
 import com.rk.quex.data.repository.MemberRepo
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private var memberRepo = MemberRepo()
 
-    fun user(uid: String): MutableLiveData<User> {
+    private var _informations = MutableLiveData<User>()
 
-        return memberRepo.profile(uid)
+    private var _favorites = MutableLiveData<ArrayList<Favorite>>()
+
+    val informations : LiveData<User>
+        get() {
+            return _informations
+        }
+
+    val favorites : LiveData<ArrayList<Favorite>>
+        get() {
+            return _favorites
+        }
+
+    init {
+
+        savedStateHandle.get<String>("uid")?.let {
+
+            getProfileInfo(it)
+
+            getFavoriteList(it)
+        }
     }
 
-    fun coins(uid: String): MutableLiveData<ArrayList<Favorite>> {
+    private fun getProfileInfo(uid: String) {
 
-        return memberRepo.favorites(uid)
+        _informations = memberRepo.getProfileInfo(uid)
+    }
+
+    private fun getFavoriteList(uid: String) {
+
+        _favorites = memberRepo.getFavoriteList(uid)
     }
 }

@@ -6,11 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rk.quex.R
+import com.rk.quex.databinding.FragmentAnswersBinding
+import com.rk.quex.databinding.FragmentCommentsBinding
 
 class Answers : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private lateinit var binding: FragmentAnswersBinding
 
-        return inflater.inflate(R.layout.fragment_answers, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        binding = FragmentAnswersBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 }

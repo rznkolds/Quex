@@ -27,7 +27,13 @@ class Enter : Fragment() {
 
         binding = FragmentEnterBinding.inflate(inflater, container, false)
 
-        val network = Connection().network(this.requireContext())
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val network = Connection().checkNetwork(this.requireContext())
 
         val user = Firebase.auth.currentUser
 
@@ -54,18 +60,18 @@ class Enter : Fragment() {
 
             this.findNavController().navigate(direction)
         }
-
-        return binding.root
     }
 
     private fun login() {
 
         val viewModel = ViewModelProvider(this)[EnterViewModel::class.java]
 
-        viewModel.loginUser(
+        viewModel.userLogin(
             binding.enterEmail.text.toString(),
             binding.enterPassword.text.toString()
-        ).observe(this.requireActivity()) {
+        )
+
+        viewModel.result.observe(this.requireActivity()) {
 
             if (it == true) {
 

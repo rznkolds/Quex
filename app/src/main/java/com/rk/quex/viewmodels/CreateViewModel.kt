@@ -8,11 +8,12 @@ import com.rk.quex.data.repository.MemberRepo
 class CreateViewModel : ViewModel() {
 
     private var memberRepo = MemberRepo()
+
     var result = MutableLiveData<Boolean>()
 
     fun createUser(name: String, text: String, email: String, password: String, picture: Uri) {
 
-        memberRepo.createUser(name, text, email, password, picture)
+        memberRepo.userRegister(name, text, email, password, picture)
 
         result = memberRepo.result
     }

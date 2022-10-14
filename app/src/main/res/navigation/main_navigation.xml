@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
@@ -10,74 +11,112 @@
         android:name="com.rk.quex.pieces.Create"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" >
+
         <action
             android:id="@+id/action_create_to_home"
             app:destination="@id/home"
-            app:popUpTo="@id/home" />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_create_to_enter"
             app:destination="@id/enter"
             app:popUpTo="@id/enter"
             app:popUpToInclusive="true" />
+
     </fragment>
+
     <fragment
         android:id="@+id/enter"
         android:name="com.rk.quex.pieces.Enter"
         android:label="fragment_enter"
-        tools:layout="@layout/fragment_enter" >
+        tools:layout="@layout/fragment_enter">
+
         <action
             android:id="@+id/action_enter_to_create"
             app:destination="@id/create"
             app:popUpToInclusive="false" />
+
         <action
             android:id="@+id/action_enter_to_home"
             app:destination="@id/home"
-            app:popUpToInclusive="false" />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
+
     </fragment>
+
     <fragment
         android:id="@+id/home"
         android:name="com.rk.quex.pieces.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+
         <action
             android:id="@+id/action_home_to_comments"
             app:destination="@id/comments"
             app:popUpToInclusive="false" />
+
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/profile"
             app:popUpTo="@id/home"
             app:popUpToInclusive="true" />
+
     </fragment>
+
     <fragment
         android:id="@+id/profile"
         android:name="com.rk.quex.pieces.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
+
         <argument
             android:name="uid"
             app:argType="string" />
+
     </fragment>
+
     <fragment
         android:id="@+id/comments"
         android:name="com.rk.quex.pieces.Comments"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
+
         <action
             android:id="@+id/action_comments_to_answers"
             app:destination="@id/answers"
             app:popUpToInclusive="false" />
+
         <action
             android:id="@+id/action_comments_to_profile"
             app:destination="@id/profile" />
+
+        <argument
+            android:name="coin"
+            app:argType="string" />
+
+        <argument
+            android:name="picture"
+            app:argType="string" />
+
+        <argument
+            android:name="price"
+            app:argType="string" />
+
     </fragment>
+
     <fragment
         android:id="@+id/answers"
         android:name="com.rk.quex.pieces.Answers"
         android:label="fragment_answers"
         tools:layout="@layout/fragment_answers" >
+
         <action
             android:id="@+id/action_answers_to_profile"
             app:destination="@id/profile" />
+
     </fragment>
+
 </navigation>

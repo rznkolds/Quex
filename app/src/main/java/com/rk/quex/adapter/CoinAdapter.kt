@@ -1,21 +1,21 @@
 package com.rk.quex.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.data.model.Coin
 import com.rk.quex.databinding.CoinItemBinding
+import com.rk.quex.pieces.HomeDirections
 import com.rk.quex.utils.CoinDiffUtil
 
-class CoinAdapter(private val context: Context): RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
+class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Coin>()
 
-    inner class AdapterHolder(val binding: CoinItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class AdapterHolder(val binding: CoinItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHolder {
 
@@ -39,6 +39,18 @@ class CoinAdapter(private val context: Context): RecyclerView.Adapter<CoinAdapte
         holder.binding.itemName.text = current.name
 
         holder.binding.itemPrice.text = current.current_price
+
+        holder.itemView.setOnClickListener {
+
+            it.findNavController().navigate(
+
+                HomeDirections.actionHomeToComments(
+                    current.name,
+                    current.image,
+                    current.current_price
+                )
+            )
+        }
     }
 
     override fun getItemCount(): Int {

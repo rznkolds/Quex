@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 
 class Connection {
 
-    fun network(context: Context): Boolean {
+    fun checkNetwork(context: Context): Boolean {
 
         val connectivity = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

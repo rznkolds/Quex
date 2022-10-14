@@ -8,8 +8,12 @@ class EnterViewModel : ViewModel() {
 
     private var memberRepo = MemberRepo()
 
-    fun loginUser(email: String, password: String): MutableLiveData<Boolean> {
+    var result = MutableLiveData<Boolean>()
 
-        return memberRepo.login(email, password)
+    fun userLogin(email: String, password: String) {
+
+        memberRepo.userLogin(email, password)
+
+        result = memberRepo.result
     }
 }

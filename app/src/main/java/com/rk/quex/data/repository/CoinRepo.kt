@@ -9,11 +9,11 @@ import retrofit2.Response
 
 class CoinRepo {
 
-    fun list (): MutableLiveData<ArrayList<Coin>> {
+    fun getCoinList (): MutableLiveData<ArrayList<Coin>> {
 
         val result = MutableLiveData<ArrayList<Coin>>()
 
-        Retrofit.coin().list().enqueue(object : Callback<ArrayList<Coin>> {
+        Retrofit.coinService().list().enqueue(object : Callback<ArrayList<Coin>> {
 
             override fun onResponse(call: Call<ArrayList<Coin>> , response: Response<ArrayList<Coin>>) {
 

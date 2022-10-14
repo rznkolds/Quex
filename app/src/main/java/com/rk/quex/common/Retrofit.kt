@@ -6,24 +6,23 @@ import com.rk.quex.data.remote.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 object Retrofit {
 
-    fun user(): UserService {
+    fun userService(): UserService {
 
-        val user: UserService by lazy { retrofit(Constants.BASE_USER_URL).create(UserService::class.java) }
+        val user: UserService by lazy { retrofitInstance(Constants.BASE_USER_URL).create(UserService::class.java) }
 
         return user
     }
 
-    fun coin(): CoinService {
+    fun coinService(): CoinService {
 
-        val coin: CoinService by lazy { retrofit(Constants.BASE_COIN_URL).create(CoinService::class.java) }
+        val coin: CoinService by lazy { retrofitInstance(Constants.BASE_COIN_URL).create(CoinService::class.java) }
 
         return coin
     }
 
-    private fun retrofit(url: String): Retrofit {
+    private fun retrofitInstance(url: String): Retrofit {
 
         val gson = GsonBuilder()
             .setLenient()

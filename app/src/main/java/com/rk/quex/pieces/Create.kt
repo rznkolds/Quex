@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.rk.quex.R
 import com.rk.quex.databinding.FragmentCreateBinding
 import com.rk.quex.viewmodels.CreateViewModel
 
@@ -29,6 +28,12 @@ class Create : Fragment() {
     ): View {
 
         binding = FragmentCreateBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
@@ -61,8 +66,6 @@ class Create : Fragment() {
 
             this.findNavController().navigate(direction)
         }
-
-        return binding.root
     }
 
     private fun create() {
@@ -75,9 +78,9 @@ class Create : Fragment() {
                 binding.accountPassword.text.isNotEmpty()
             ) {
 
-                val vm = ViewModelProvider(this)[CreateViewModel::class.java]
+                val viewModel = ViewModelProvider(this)[CreateViewModel::class.java]
 
-                vm.createUser(
+                viewModel.createUser(
                     binding.accountName.text.toString(),
                     binding.accountText.text.toString(),
                     binding.accountEmail.text.toString(),
@@ -85,7 +88,7 @@ class Create : Fragment() {
                     picture!!
                 )
 
-                vm.result.observe(this.requireActivity()) {
+                viewModel.result.observe(this.requireActivity()) {
 
                     if (it.equals(true)) {
 

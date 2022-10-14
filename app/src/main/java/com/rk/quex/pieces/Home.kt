@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,14 +13,13 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.rk.quex.R
 import com.rk.quex.adapter.CoinAdapter
 import com.rk.quex.databinding.FragmentHomeBinding
 import com.rk.quex.viewmodels.HomeViewModel
 
 class Home : Fragment() {
 
-    private val adapter by lazy { CoinAdapter(this.requireContext()) }
+    private val adapter by lazy { CoinAdapter() }
     private val cloud by lazy { Firebase.storage.reference }
     private val auth by lazy { Firebase.auth.currentUser }
     private lateinit var binding: FragmentHomeBinding
@@ -32,6 +32,12 @@ class Home : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.coinRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         binding.coinRecycler.adapter = adapter
@@ -43,7 +49,7 @@ class Home : Fragment() {
 
         val viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        viewModel.coins().observe(this.requireActivity()) {
+        viewModel.coins.observe(this.requireActivity()) {
 
             if (it.isNotEmpty()) {
 
@@ -53,11 +59,22 @@ class Home : Fragment() {
 
         binding.profileLayout.setOnClickListener {
 
-            val direction = HomeDirections.actionHomeToProfile(auth!!.uid)
+            auth?.uid?.let {
 
-            findNavController().navigate(direction)
+                val direction = HomeDirections.actionHomeToProfile(it)
+
+                findNavController().navigate(direction)
+            }
         }
 
-        return binding.root
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+
+            override fun handleOnBackPressed() {
+
+                requireActivity().onBackPressed()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this.viewLifecycleOwner, callback)
     }
 }

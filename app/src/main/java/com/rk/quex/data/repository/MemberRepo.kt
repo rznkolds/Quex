@@ -6,6 +6,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.rk.quex.common.Retrofit
+import com.rk.quex.data.model.Comment
 import com.rk.quex.data.model.Favorite
 import com.rk.quex.data.model.User
 import retrofit2.Call
@@ -18,9 +19,7 @@ class MemberRepo {
     private val auth by lazy { Firebase.auth }
     val result = MutableLiveData<Boolean>()
 
-    fun login(email: String, password: String): MutableLiveData<Boolean> {
-
-        val result = MutableLiveData<Boolean>()
+    fun userLogin(email: String, password: String) {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 
@@ -29,11 +28,9 @@ class MemberRepo {
                 result.value = true
             }
         }
-
-        return result
     }
 
-    fun createUser(name: String, text: String, email: String, password: String, picture: Uri) {
+    fun userRegister(name: String, text: String, email: String, password: String, picture: Uri) {
 
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
 
@@ -43,7 +40,7 @@ class MemberRepo {
 
                     val user = User(auth.currentUser?.uid.toString(), name, text, p.toString())
 
-                    Retrofit.user().postUser(user).enqueue(object : Callback<String> {
+                    Retrofit.userService().postUser(user).enqueue(object : Callback<String> {
 
                         override fun onResponse(call: Call<String>, response: Response<String>) {
 
@@ -60,11 +57,11 @@ class MemberRepo {
         }
     }
 
-    fun profile(uid: String): MutableLiveData<User> {
+    fun getProfileInfo(uid: String): MutableLiveData<User> {
 
         val result = MutableLiveData<User>()
 
-        Retrofit.user().userInfo(uid).enqueue(object : Callback<User> {
+        Retrofit.userService().userInformations(uid).enqueue(object : Callback<User> {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
 
@@ -80,11 +77,11 @@ class MemberRepo {
         return result
     }
 
-    fun favorites(uid: String): MutableLiveData<ArrayList<Favorite>> {
+    fun getFavoriteList(uid: String): MutableLiveData<ArrayList<Favorite>> {
 
         val result = MutableLiveData<ArrayList<Favorite>>()
 
-        Retrofit.user().favorites(uid).enqueue(object : Callback<ArrayList<Favorite>> {
+        Retrofit.userService().favoriteCoins(uid).enqueue(object : Callback<ArrayList<Favorite>> {
 
             override fun onResponse(
                 call: Call<ArrayList<Favorite>>,
@@ -98,6 +95,29 @@ class MemberRepo {
             }
 
             override fun onFailure(call: Call<ArrayList<Favorite>>, t: Throwable) {}
+        })
+
+        return result
+    }
+
+    fun getCommentList(coin: String): MutableLiveData<ArrayList<Comment>> {
+
+        val result = MutableLiveData<ArrayList<Comment>>()
+
+        Retrofit.userService().coinComments(coin).enqueue(object : Callback<ArrayList<Comment>> {
+
+            override fun onResponse(
+                call: Call<ArrayList<Comment>>,
+                response: Response<ArrayList<Comment>>
+            ) {
+
+                if (response.isSuccessful) {
+
+                    result.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Comment>>, t: Throwable) {}
         })
 
         return result

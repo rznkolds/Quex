@@ -1,6 +1,5 @@
 package com.rk.quex.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,8 +8,7 @@ import com.rk.quex.data.model.Favorite
 import com.rk.quex.databinding.FavoriteItemBinding
 import com.rk.quex.utils.FavoriteDiffUtil
 
-class FavoriteAdapter(private val context: Context) :
-    RecyclerView.Adapter<FavoriteAdapter.AdapterHolder>() {
+class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Favorite>()
 
