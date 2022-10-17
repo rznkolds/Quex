@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +27,7 @@
         android:layout_marginTop="20dp"
         android:autoSizeTextType="uniform"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profile_picture"
         app:layout_constraintTop_toTopOf="@+id/profile_picture" />
@@ -85,6 +86,7 @@
         android:layout_marginTop="10dp"
         android:text="Favorites"
         android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_divider_two" />
@@ -93,10 +95,9 @@
         android:id="@+id/favorite_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Favorite List Empty"
+        android:layout_marginTop="10dp"
+        android:text="Favorite list empty"
         android:textColor="@color/white"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/favorites_recycler"
         app:layout_constraintStart_toStartOf="@+id/favorites_recycler"
         app:layout_constraintTop_toTopOf="@+id/favorites_recycler" />

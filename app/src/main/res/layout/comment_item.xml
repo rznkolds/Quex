@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="110dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/comment_item_picture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/picture_background"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/comment_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/comment_item_picture"
+        app:layout_constraintTop_toTopOf="@+id/comment_item_picture" />
+
+    <TextView
+        android:id="@+id/comment_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/idea_background"
+        android:maxWidth="310dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/comment_item_name"
+        app:layout_constraintTop_toBottomOf="@+id/comment_item_name" />
+
+    <TextView
+        android:id="@+id/show_answers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Show answers"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/comment_item_text"
+        app:layout_constraintTop_toBottomOf="@+id/comment_item_text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

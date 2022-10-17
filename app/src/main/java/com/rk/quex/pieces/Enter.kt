@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.rk.quex.R
 import com.rk.quex.databinding.FragmentEnterBinding
-import com.rk.quex.viewmodels.EnterViewModel
 import com.rk.quex.network.Connection
+import com.rk.quex.viewmodels.EnterViewModel
 
 class Enter : Fragment() {
 
+    private val viewModel: EnterViewModel by viewModels()
     private lateinit var binding: FragmentEnterBinding
 
     override fun onCreateView(
@@ -64,14 +65,12 @@ class Enter : Fragment() {
 
     private fun login() {
 
-        val viewModel = ViewModelProvider(this)[EnterViewModel::class.java]
-
         viewModel.userLogin(
             binding.enterEmail.text.toString(),
             binding.enterPassword.text.toString()
         )
 
-        viewModel.result.observe(this.requireActivity()) {
+        viewModel.result.observe(viewLifecycleOwner) {
 
             if (it == true) {
 

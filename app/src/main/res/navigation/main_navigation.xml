@@ -15,13 +15,17 @@
         <action
             android:id="@+id/action_create_to_home"
             app:destination="@id/home"
+            app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
-            app:popUpTo="@id/home"
+            app:popUpTo="@id/create"
             app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_create_to_enter"
             app:destination="@id/enter"
+            app:enterAnim="@anim/open_component_from_left"
+            app:exitAnim="@anim/close_component_from_right"
+            app:launchSingleTop="false"
             app:popUpTo="@id/enter"
             app:popUpToInclusive="true" />
 
@@ -36,13 +40,19 @@
         <action
             android:id="@+id/action_enter_to_create"
             app:destination="@id/create"
-            app:popUpToInclusive="false" />
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpTo="@id/create"
+            app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_enter_to_home"
             app:destination="@id/home"
+            app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
-            app:popUpTo="@id/home"
+            app:popUpTo="@id/enter"
             app:popUpToInclusive="true" />
 
     </fragment>
@@ -56,13 +66,20 @@
         <action
             android:id="@+id/action_home_to_comments"
             app:destination="@id/comments"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
             app:popUpToInclusive="false" />
 
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/profile"
-            app:popUpTo="@id/home"
-            app:popUpToInclusive="true" />
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpToInclusive="false" />
 
     </fragment>
 
@@ -87,11 +104,19 @@
         <action
             android:id="@+id/action_comments_to_answers"
             app:destination="@id/answers"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
             app:popUpToInclusive="false" />
 
         <action
             android:id="@+id/action_comments_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/profile"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
 
         <argument
             android:name="coin"
@@ -115,7 +140,11 @@
 
         <action
             android:id="@+id/action_answers_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/profile"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
 
     </fragment>
 

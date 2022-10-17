@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -22,6 +22,7 @@ class Home : Fragment() {
     private val adapter by lazy { CoinAdapter() }
     private val cloud by lazy { Firebase.storage.reference }
     private val auth by lazy { Firebase.auth.currentUser }
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -42,19 +43,17 @@ class Home : Fragment() {
 
         binding.coinRecycler.adapter = adapter
 
-        cloud.child(auth!!.uid).downloadUrl.addOnSuccessListener {
-
-            Glide.with(this).load(it.toString()).into(binding.homeProfile)
-        }
-
-        val viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
-        viewModel.coins.observe(this.requireActivity()) {
+        viewModel.coins.observe(viewLifecycleOwner) {
 
             if (it.isNotEmpty()) {
 
                 adapter.setData(it)
             }
+        }
+
+        cloud.child(auth?.uid.toString()).downloadUrl.addOnSuccessListener {
+
+            Glide.with(this).load(it.toString()).into(binding.homeProfile)
         }
 
         binding.profileLayout.setOnClickListener {
@@ -67,14 +66,6 @@ class Home : Fragment() {
             }
         }
 
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
 
-            override fun handleOnBackPressed() {
-
-                requireActivity().onBackPressed()
-            }
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(this.viewLifecycleOwner, callback)
     }
 }

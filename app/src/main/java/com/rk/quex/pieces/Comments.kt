@@ -1,26 +1,23 @@
 package com.rk.quex.pieces
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.rk.quex.R
+import com.rk.quex.adapter.CommentAdapter
 import com.rk.quex.databinding.FragmentCommentsBinding
-import com.rk.quex.databinding.FragmentCreateBinding
-import com.rk.quex.databinding.FragmentProfileBinding
 import com.rk.quex.viewmodels.CommentViewModel
-import com.rk.quex.viewmodels.CreateViewModel
 
 class Comments : Fragment() {
 
+    private val viewModel: CommentViewModel by viewModels()
     private lateinit var binding: FragmentCommentsBinding
-
+    private val adapter by lazy { CommentAdapter() }
     private val args: CommentsArgs by navArgs()
 
     override fun onCreateView(
@@ -37,22 +34,25 @@ class Comments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProvider(this)[CommentViewModel::class.java]
+        args.let {
 
-        Glide.with(this).load(args.picture).into(binding.commentCoinPicture)
+            Glide.with(this).load(it.picture).into(binding.commentCoinPicture)
+            binding.commentCoinName.text = it.coin
+            binding.commentCoinPrice.text = it.price
+        }
 
-        binding.commentCoinName.text = args.coin
-        binding.commentCoinPrice.text = args.price
+        binding.commentRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.commentRecycler.adapter = adapter
 
-        viewModel.comments.observe(this.requireActivity()) {
+        viewModel.comments.observe(viewLifecycleOwner) {
 
-            if ( !it.isNullOrEmpty() ) {
+            if (!it.isNullOrEmpty()) {
 
-                Log.d("Yorum Listesi 1:", it.toString())
+                adapter.setData(it)
 
             } else {
 
-                Log.d("Yorum Listesi 2:", "Boş")
+                binding.commentRecycler.visibility = View.INVISIBLE
             }
         }
     }

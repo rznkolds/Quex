@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.rk.quex.databinding.FragmentCreateBinding
@@ -18,6 +18,7 @@ import com.rk.quex.viewmodels.CreateViewModel
 
 class Create : Fragment() {
 
+    private val viewModel: CreateViewModel by viewModels()
     private lateinit var binding: FragmentCreateBinding
     private var picture: Uri? = null
 
@@ -78,8 +79,6 @@ class Create : Fragment() {
                 binding.accountPassword.text.isNotEmpty()
             ) {
 
-                val viewModel = ViewModelProvider(this)[CreateViewModel::class.java]
-
                 viewModel.createUser(
                     binding.accountName.text.toString(),
                     binding.accountText.text.toString(),
@@ -88,7 +87,7 @@ class Create : Fragment() {
                     picture!!
                 )
 
-                viewModel.result.observe(this.requireActivity()) {
+                viewModel.result.observe(viewLifecycleOwner) {
 
                     if (it.equals(true)) {
 

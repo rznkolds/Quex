@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.rk.quex.adapter.FavoriteAdapter
@@ -14,8 +14,9 @@ import com.rk.quex.viewmodels.ProfileViewModel
 
 class Profile : Fragment() {
 
-    private val adapter by lazy { FavoriteAdapter(this.requireContext()) }
+    private val adapter by lazy { FavoriteAdapter() }
     private lateinit var binding: FragmentProfileBinding
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +36,7 @@ class Profile : Fragment() {
 
         binding.favoritesRecycler.adapter = adapter
 
-        val viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-
-        viewModel.informations.observe(this.requireActivity()) {
+        viewModel.informations.observe(viewLifecycleOwner) {
 
             binding.profileName.text = it.name
             binding.profileDescription.text = it.text

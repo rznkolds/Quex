@@ -17,14 +17,10 @@ class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     private var _favorites = MutableLiveData<ArrayList<Favorite>>()
 
     val informations : LiveData<User>
-        get() {
-            return _informations
-        }
+        get() = _informations
 
     val favorites : LiveData<ArrayList<Favorite>>
-        get() {
-            return _favorites
-        }
+        get() = _favorites
 
     init {
 
