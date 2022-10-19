@@ -34,11 +34,11 @@ class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private fun getProfileInfo(uid: String) {
 
-        _informations = memberRepo.getProfileInfo(uid)
+        _informations = memberRepo.getUser(uid)
     }
 
     private fun getFavoriteList(uid: String) {
 
-        _favorites = memberRepo.getFavoriteList(uid)
+        _favorites = memberRepo.getFavoriteCoins(uid)
     }
 }

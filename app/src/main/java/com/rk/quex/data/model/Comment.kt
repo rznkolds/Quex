@@ -7,6 +7,6 @@ data class Comment(
     val url: String,
     val coin: String,
     val comment: String,
-    val date: String,
-    val time: String
+    val date: Int,
+    val time: Int
 )

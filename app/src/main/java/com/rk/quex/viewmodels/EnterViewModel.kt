@@ -12,7 +12,7 @@ class EnterViewModel : ViewModel() {
 
     fun userLogin(email: String, password: String) {
 
-        memberRepo.userLogin(email, password)
+        memberRepo.login(email, password)
 
         result = memberRepo.result
     }

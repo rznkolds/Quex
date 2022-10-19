@@ -10,13 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.rk.quex.R
 import com.rk.quex.databinding.FragmentEnterBinding
 import com.rk.quex.network.Connection
 import com.rk.quex.viewmodels.EnterViewModel
 
 class Enter : Fragment() {
 
+    private val auth by lazy { Firebase.auth.currentUser }
     private val viewModel: EnterViewModel by viewModels()
     private lateinit var binding: FragmentEnterBinding
 
@@ -36,18 +36,18 @@ class Enter : Fragment() {
 
         val network = Connection().checkNetwork(this.requireContext())
 
-        val user = Firebase.auth.currentUser
-
         if (network) {
 
-            if (user != null) {
+            auth?.uid?.let {
 
-                this.findNavController().navigate(R.id.action_enter_to_home)
+                val direction = EnterDirections.actionEnterToHome()
+
+                this.findNavController().navigate(direction)
+
+            } ?: {
+
+                toast("Giriş yapınız")
             }
-
-        } else {
-
-            toast("İnternet bağlantınızı kontrol ediniz")
         }
 
         binding.enter.setOnClickListener {
@@ -80,7 +80,7 @@ class Enter : Fragment() {
 
             } else {
 
-                toast("Hatalı E-mail veya Şifre")
+                toast("Hatalı e-mail veya şifre")
             }
         }
     }

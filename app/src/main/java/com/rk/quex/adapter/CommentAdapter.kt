@@ -1,25 +1,23 @@
 package com.rk.quex.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rk.quex.data.model.Coin
 import com.rk.quex.data.model.Comment
-import com.rk.quex.databinding.CoinItemBinding
 import com.rk.quex.databinding.CommentItemBinding
 import com.rk.quex.pieces.CommentsDirections
-import com.rk.quex.pieces.HomeDirections
-import com.rk.quex.utils.CoinDiffUtil
 import com.rk.quex.utils.CommentDiffUtil
 
-class CommentAdapter: RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
+class CommentAdapter : RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Comment>()
 
-    inner class AdapterHolder(val binding: CommentItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class AdapterHolder(val binding: CommentItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHolder {
 
@@ -41,18 +39,30 @@ class CommentAdapter: RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
         Glide.with(holder.itemView).load(current.url).into(holder.binding.commentItemPicture)
 
         holder.binding.commentItemName.text = current.name
-        holder.binding.commentItemText .text = current.comment
+        holder.binding.commentItemText.text = current.comment
+
+        holder.binding.commentItemName.setOnClickListener {
+
+            showProfile(it, current)
+        }
 
         holder.binding.commentItemPicture.setOnClickListener {
 
-            it.findNavController().navigate(
+            showProfile(it, current)
+        }
 
-                CommentsDirections.actionCommentsToProfile(
-                    current.uid
-                )
-            )
+        holder.binding.commentItemText.setOnClickListener {
+
+            showAnswers(it, current)
+        }
+
+        holder.binding.showAnswers.setOnClickListener {
+
+            showAnswers(it, current)
         }
     }
+
+
 
     override fun getItemCount(): Int {
 
@@ -68,5 +78,31 @@ class CommentAdapter: RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
         list.addAll(new_user_list)
 
         result.dispatchUpdatesTo(this)
+    }
+
+    private fun showAnswers(view: View, current: Comment) {
+
+        view.findNavController().navigate(
+
+            CommentsDirections.actionCommentsToAnswers(
+                current.uid,
+                current.name,
+                current.url,
+                current.coin,
+                current.comment,
+                current.date,
+                current.time
+            )
+        )
+    }
+
+    private fun showProfile(view: View, current: Comment) {
+
+        view.findNavController().navigate(
+
+            CommentsDirections.actionCommentsToProfile(
+                current.uid
+            )
+        )
     }
 }

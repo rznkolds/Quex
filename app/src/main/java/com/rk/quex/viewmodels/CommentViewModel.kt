@@ -13,7 +13,9 @@ class CommentViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private var _comments = MutableLiveData<ArrayList<Comment>>()
 
-    val comments : LiveData<ArrayList<Comment>>
+    var result = MutableLiveData<Boolean>()
+
+    val comments: LiveData<ArrayList<Comment>>
         get() {
 
             return _comments
@@ -27,8 +29,17 @@ class CommentViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         }
     }
 
-    private fun getCommentList(coin: String) {
+    fun getCommentList(coin: String) {
 
-        _comments = memberRepo.getCommentList(coin)
+        memberRepo.getComments(coin)
+
+        _comments = memberRepo.comments
+    }
+
+    fun sendComment(coin: String, comment: String, date: Int, time: Int) {
+
+        memberRepo.postComment(coin, comment, date, time)
+
+        result = memberRepo.result
     }
 }

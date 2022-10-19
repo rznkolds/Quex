@@ -17,8 +17,8 @@
             app:destination="@id/home"
             app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
-            app:popUpTo="@id/create"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="false" />
 
         <action
             android:id="@+id/action_create_to_enter"
@@ -42,18 +42,18 @@
             app:destination="@id/create"
             app:enterAnim="@anim/open_component_from_right"
             app:exitAnim="@anim/close_component_from_left"
+            app:launchSingleTop="false"
             app:popEnterAnim="@anim/open_component_from_left"
             app:popExitAnim="@anim/close_component_from_right"
-            app:popUpTo="@id/create"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
 
         <action
             android:id="@+id/action_enter_to_home"
             app:destination="@id/home"
             app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
-            app:popUpTo="@id/enter"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="false" />
 
     </fragment>
 
@@ -145,6 +145,26 @@
             app:exitAnim="@anim/close_component_from_left"
             app:popEnterAnim="@anim/open_component_from_left"
             app:popExitAnim="@anim/close_component_from_right" />
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="coin"
+            app:argType="string" />
+        <argument
+            android:name="comment"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="integer" />
+        <argument
+            android:name="time"
+            app:argType="integer" />
 
     </fragment>
 

@@ -13,7 +13,7 @@ class CreateViewModel : ViewModel() {
 
     fun createUser(name: String, text: String, email: String, password: String, picture: Uri) {
 
-        memberRepo.userRegister(name, text, email, password, picture)
+        memberRepo.register(name, text, email, password, picture)
 
         result = memberRepo.result
     }
