@@ -7,7 +7,7 @@
     tools:context="pieces.Comments">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/comment_coin_picture"
+        android:id="@+id/sample_coin_picture"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="10dp"
@@ -19,19 +19,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/comment_coin_name"
+        android:id="@+id/sample_coin_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/comment_coin_price"
-        app:layout_constraintStart_toEndOf="@+id/comment_coin_picture"
-        app:layout_constraintTop_toTopOf="@+id/comment_coin_picture" />
+        app:layout_constraintEnd_toStartOf="@+id/sample_coin_price"
+        app:layout_constraintStart_toEndOf="@+id/sample_coin_picture"
+        app:layout_constraintTop_toTopOf="@+id/sample_coin_picture" />
 
     <TextView
-        android:id="@+id/comment_coin_price"
+        android:id="@+id/sample_coin_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="35dp"
@@ -39,12 +39,22 @@
         android:text="355,851.45"
         android:textAlignment="gravity"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/comment_coin_name"
+        app:layout_constraintBottom_toBottomOf="@+id/sample_coin_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/comment_coin_picture" />
+        app:layout_constraintTop_toTopOf="@+id/sample_coin_picture" />
+
+    <View
+        android:id="@+id/coin_divider_one"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sample_coin_picture" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/comment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -52,27 +62,17 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_two" />
+        app:layout_constraintTop_toBottomOf="@+id/coin_divider_one" />
 
     <View
-        android:id="@+id/divider_two"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_coin_picture" />
-
-    <View
-        android:id="@+id/divider_two2"
+        android:id="@+id/comment_divider_two"
         android:layout_width="200dp"
         android:layout_height="2dp"
         android:layout_marginTop="10dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/comment_title" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comment_recycler"
@@ -80,13 +80,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/comment_text"
+        app:layout_constraintBottom_toTopOf="@+id/comment_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_two2" />
+        app:layout_constraintTop_toBottomOf="@+id/comment_divider_two" />
 
     <EditText
-        android:id="@+id/comment_text"
+        android:id="@+id/comment_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -94,6 +94,7 @@
         android:hint="Write Comment"
         android:imeOptions="actionSend"
         android:inputType="text"
+        android:minHeight="48dp"
         android:padding="10dp"
         android:paddingStart="20dp"
         android:textColor="@color/black"

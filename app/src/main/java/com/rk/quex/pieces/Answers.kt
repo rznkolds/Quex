@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.rk.quex.adapter.AnswerAdapter
+import com.rk.quex.adapter.CommentAdapter
 import com.rk.quex.databinding.FragmentAnswersBinding
 import com.rk.quex.viewmodels.AnswerViewModel
 
@@ -17,6 +19,7 @@ class Answers : Fragment() {
     private val viewModel: AnswerViewModel by viewModels()
     private lateinit var binding: FragmentAnswersBinding
     private val args: AnswersArgs by navArgs()
+    private val adapter by lazy { AnswerAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,29 +35,28 @@ class Answers : Fragment() {
 
         args.let {
 
-            Glide.with(this).load(it.url).into(binding.commentPicture)
-            binding.commentName.text = it.name
-            binding.commentText.text = it.comment
+            Glide.with(this).load(it.url).into(binding.sampleCommentPicture)
+            binding.sampleCommentName.text = it.name
+            binding.sampleCommentText.text = it.comment
         }
 
         viewModel.answers.observe(viewLifecycleOwner) {
 
-            /*if (!it.isNullOrEmpty()) {
+            if (!it.isNullOrEmpty()) {
 
                 val linear = LinearLayoutManager(requireContext()).apply {
 
-                    reverseLayout = true
                     stackFromEnd = true
                 }
 
-                binding.commentRecycler.layoutManager = linear
-                binding.commentRecycler.adapter = adapter
+                binding.answerRecycler.layoutManager = linear
+                binding.answerRecycler.adapter = adapter
                 adapter.setData(it)
 
             } else {
 
-                binding.commentRecycler.visibility = View.INVISIBLE
-            }*/
+                binding.answerRecycler.visibility = View.INVISIBLE
+            }
         }
     }
 }

@@ -6,22 +6,26 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.rk.quex.data.model.Answer
 import com.rk.quex.data.model.Coin
+import com.rk.quex.databinding.AnswerItemBinding
 import com.rk.quex.databinding.CoinItemBinding
+import com.rk.quex.pieces.AnswersDirections
 import com.rk.quex.pieces.HomeDirections
+import com.rk.quex.utils.AnswerDiffUtil
 import com.rk.quex.utils.CoinDiffUtil
 
-class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
+class AnswerAdapter : RecyclerView.Adapter<AnswerAdapter.AdapterHolder>() {
 
-    private var list = ArrayList<Coin>()
+    private var list = ArrayList<Answer>()
 
-    inner class AdapterHolder(val binding: CoinItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class AdapterHolder(val binding: AnswerItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHolder {
 
         return AdapterHolder(
 
-            CoinItemBinding.inflate(
+            AnswerItemBinding.inflate(
 
                 LayoutInflater.from(parent.context),
                 parent,
@@ -34,20 +38,18 @@ class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
 
         val current = list[position]
 
-        Glide.with(holder.itemView).load(current.image).into(holder.binding.coinPicture)
+        Glide.with(holder.itemView).load(current.url ).into(holder.binding.answerPicture)
 
-        holder.binding.coinName.text = current.name
+        holder.binding.answerName.text = current.name
 
-        holder.binding.coinPrice.text = current.current_price
+        holder.binding.answerText.text = current.comment
 
         holder.itemView.setOnClickListener {
 
             it.findNavController().navigate(
 
-                HomeDirections.actionHomeToComments(
-                    current.name,
-                    current.image,
-                    current.current_price
+                AnswersDirections.actionAnswersToProfile (
+                    current.uid
                 )
             )
         }
@@ -58,11 +60,11 @@ class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
         return list.size
     }
 
-    fun setData(new_user_list: ArrayList<Coin>) {
+    fun setData(new_user_list: ArrayList<Answer>) {
 
         list.clear()
 
-        val result = DiffUtil.calculateDiff(CoinDiffUtil(list, new_user_list))
+        val result = DiffUtil.calculateDiff(AnswerDiffUtil(list, new_user_list))
 
         list.addAll(new_user_list)
 

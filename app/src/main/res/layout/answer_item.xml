@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/comment_picture"
+        android:id="@+id/answer_picture"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
@@ -17,40 +17,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/comment_name"
+        android:id="@+id/answer_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/comment_picture"
-        app:layout_constraintTop_toTopOf="@+id/comment_picture" />
+        app:layout_constraintStart_toEndOf="@+id/answer_picture"
+        app:layout_constraintTop_toTopOf="@+id/answer_picture" />
 
     <TextView
-        android:id="@+id/comment_text"
+        android:id="@+id/answer_text"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/idea_background"
         android:maxWidth="310dp"
         android:padding="10dp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/comment_name"
-        app:layout_constraintTop_toBottomOf="@+id/comment_name" />
-
-    <TextView
-        android:id="@+id/comment_answers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Show answers"
-        android:textColor="@color/white"
-        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/comment_text"
-        app:layout_constraintTop_toBottomOf="@+id/comment_text" />
+        app:layout_constraintStart_toStartOf="@+id/answer_name"
+        app:layout_constraintTop_toBottomOf="@+id/answer_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

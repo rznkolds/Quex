@@ -37,9 +37,9 @@ class Comments : Fragment() {
 
         args.let {
 
-            Glide.with(this).load(it.picture).into(binding.commentCoinPicture)
-            binding.commentCoinName.text = it.coin
-            binding.commentCoinPrice.text = it.price
+            Glide.with(this).load(it.picture).into(binding.sampleCoinPicture )
+            binding.sampleCoinName.text = it.coin
+            binding.sampleCoinPrice.text = it.price
         }
 
         viewModel.comments.observe(viewLifecycleOwner) {
@@ -62,7 +62,7 @@ class Comments : Fragment() {
             }
         }
 
-        binding.commentText.setOnEditorActionListener { v, actionId, event ->
+        binding.commentEditText.setOnEditorActionListener { v, actionId, event ->
 
             when (actionId) {
 

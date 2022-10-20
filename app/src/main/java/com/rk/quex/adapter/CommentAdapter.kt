@@ -36,33 +36,31 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
 
         val current = list[position]
 
-        Glide.with(holder.itemView).load(current.url).into(holder.binding.commentItemPicture)
+        Glide.with(holder.itemView).load(current.url).into(holder.binding.commentPicture)
 
-        holder.binding.commentItemName.text = current.name
-        holder.binding.commentItemText.text = current.comment
+        holder.binding.commentName.text = current.name
+        holder.binding.commentText.text = current.comment
 
-        holder.binding.commentItemName.setOnClickListener {
-
-            showProfile(it, current)
-        }
-
-        holder.binding.commentItemPicture.setOnClickListener {
+        holder.binding.commentName.setOnClickListener {
 
             showProfile(it, current)
         }
 
-        holder.binding.commentItemText.setOnClickListener {
+        holder.binding.commentPicture.setOnClickListener {
+
+            showProfile(it, current)
+        }
+
+        holder.binding.commentText.setOnClickListener {
 
             showAnswers(it, current)
         }
 
-        holder.binding.showAnswers.setOnClickListener {
+        holder.binding.commentAnswers.setOnClickListener {
 
             showAnswers(it, current)
         }
     }
-
-
 
     override fun getItemCount(): Int {
 

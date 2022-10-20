@@ -18,31 +18,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/coin_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/item_price"
+        app:layout_constraintEnd_toStartOf="@+id/coin_price"
         app:layout_constraintStart_toEndOf="@+id/coin_picture"
         app:layout_constraintTop_toTopOf="@+id/coin_picture" />
 
     <TextView
-        android:id="@+id/item_price"
+        android:id="@+id/coin_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="35dp"
         android:gravity="start"
         android:text="355,851.45"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/item_name"
+        app:layout_constraintBottom_toBottomOf="@+id/coin_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/coin_picture" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/show_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/coin_divider_two"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:background="?android:attr/listDivider"
@@ -62,12 +62,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/divider_two"
+        android:id="@+id/coin_divider_one"
         android:layout_width="200dp"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/show_comments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
