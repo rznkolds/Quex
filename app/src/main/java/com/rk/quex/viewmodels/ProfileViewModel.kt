@@ -13,32 +13,38 @@ class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     private var memberRepo = MemberRepo()
 
     private var _informations = MutableLiveData<User>()
+    val informations : LiveData<User>
+        get() {
+            return _informations
+        }
 
     private var _favorites = MutableLiveData<ArrayList<Favorite>>()
-
-    val informations : LiveData<User>
-        get() = _informations
-
     val favorites : LiveData<ArrayList<Favorite>>
-        get() = _favorites
+        get() {
+            return _favorites
+        }
 
     init {
 
         savedStateHandle.get<String>("uid")?.let {
 
-            getProfileInfo(it)
+            getProfile(it)
 
-            getFavoriteList(it)
+            getFavorites(it)
         }
     }
 
-    private fun getProfileInfo(uid: String) {
+    private fun getProfile(uid: String) {
 
-        _informations = memberRepo.getUser(uid)
+        memberRepo.getProfile(uid)
+
+        _informations = memberRepo.user
     }
 
-    private fun getFavoriteList(uid: String) {
+    private fun getFavorites(uid: String) {
 
-        _favorites = memberRepo.getFavoriteCoins(uid)
+        memberRepo.getFavorites(uid)
+
+        _favorites = memberRepo.favorites
     }
 }

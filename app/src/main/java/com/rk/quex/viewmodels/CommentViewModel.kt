@@ -17,7 +17,6 @@ class CommentViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     val comments: LiveData<ArrayList<Comment>>
         get() {
-
             return _comments
         }
 
@@ -36,9 +35,9 @@ class CommentViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         _comments = memberRepo.comments
     }
 
-    fun sendComment(coin: String, comment: String, date: Int, time: Int) {
+    fun sendComment(coin: String, comment: String) {
 
-        memberRepo.postComment(coin, comment, date, time)
+        memberRepo.postComment(coin, comment)
 
         result = memberRepo.result
     }

@@ -60,6 +60,11 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
 
             showAnswers(it, current)
         }
+
+        holder.binding.item.setOnClickListener {
+
+            showAnswers(it, current)
+        }
     }
 
     override fun getItemCount(): Int {

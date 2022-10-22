@@ -13,15 +13,18 @@ import com.rk.quex.data.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MemberRepo {
 
+    private val auth by lazy { Firebase.auth }
     private val cloud by lazy { Firebase.storage.reference }
+    val result = MutableLiveData<Boolean>()
+    val user = MutableLiveData<User>()
+    val favorites = MutableLiveData<ArrayList<Favorite>>()
     val comments = MutableLiveData<ArrayList<Comment>>()
     val answers = MutableLiveData<ArrayList<Answer>>()
-    private val auth by lazy { Firebase.auth }
-    val result = MutableLiveData<Boolean>()
 
     // User login and registration processes
 
@@ -29,10 +32,7 @@ class MemberRepo {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 
-            if (it.isSuccessful) {
-
-                result.value = true
-            }
+            result.value = it.isSuccessful
         }
     }
 
@@ -50,10 +50,7 @@ class MemberRepo {
 
                         override fun onResponse(call: Call<String>, response: Response<String>) {
 
-                            if (response.isSuccessful) {
-
-                                result.value = true
-                            }
+                            result.value = response.isSuccessful
                         }
 
                         override fun onFailure(call: Call<String>, t: Throwable) {}
@@ -65,9 +62,7 @@ class MemberRepo {
 
     // Get current user's data
 
-    fun getUser(uid: String): MutableLiveData<User> {
-
-        val result = MutableLiveData<User>()
+    fun getProfile(uid: String) {
 
         Retrofit.userService().getUser(uid).enqueue(object : Callback<User> {
 
@@ -75,21 +70,17 @@ class MemberRepo {
 
                 if (response.isSuccessful) {
 
-                    result.value = response.body()
+                    user.value = response.body()
                 }
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {}
         })
-
-        return result
     }
 
     // Get current user's favorite coin list
 
-    fun getFavoriteCoins(uid: String): MutableLiveData<ArrayList<Favorite>> {
-
-        val result = MutableLiveData<ArrayList<Favorite>>()
+    fun getFavorites(uid: String) {
 
         Retrofit.userService().getFavoriteCoins(uid)
             .enqueue(object : Callback<ArrayList<Favorite>> {
@@ -100,21 +91,38 @@ class MemberRepo {
 
                     if (response.isSuccessful) {
 
-                        result.value = response.body()
+                        favorites.value = response.body()
                     }
                 }
 
                 override fun onFailure(call: Call<ArrayList<Favorite>>, t: Throwable) {}
             })
-
-        return result
     }
 
     // Saving and receiving comments
 
-    fun postComment(coin: String, comment: String, date: Int, time: Int) {
+    fun postComment(coin: String, comment: String) {
 
-        val comment = Comment(auth.uid.toString(), "", "", coin, comment, date, time)
+        val calendar = Calendar.getInstance()
+
+        val date = calendar[Calendar.DAY_OF_MONTH].toString() +
+                calendar[Calendar.MONTH].toString() +
+                calendar[Calendar.YEAR].toString()
+
+        val time = calendar[Calendar.MILLISECOND].toString() +
+                calendar[Calendar.MINUTE].toString() +
+                calendar[Calendar.HOUR_OF_DAY].toString()
+
+        val comment = Comment(
+
+            auth.uid.toString(),
+            "",
+            "",
+            coin,
+            comment,
+            date.toInt(),
+            time.toInt()
+        )
 
         Retrofit.userService().postComment(comment).enqueue(object : Callback<String> {
 
@@ -149,8 +157,17 @@ class MemberRepo {
 
     fun postAnswer(above_uid: String, coin: String, comment: String, top_date: Int, top_time: Int) {
 
-        val answer =
-            Answer(auth.uid.toString(), "", above_uid, "", coin, comment, top_date, top_time)
+        val answer = Answer(
+
+            auth.uid.toString(),
+            "",
+            above_uid,
+            "",
+            coin,
+            comment,
+            top_date,
+            top_time
+        )
 
         Retrofit.userService().postAnswer(answer).enqueue(object : Callback<String> {
 
@@ -165,9 +182,13 @@ class MemberRepo {
 
     fun getAnswers(coin: String, above_uid: String, top_date: Int, top_time: Int) {
 
-        Retrofit.userService().getAnswers(coin, above_uid, top_date, top_time).enqueue(object : Callback<ArrayList<Answer>> {
+        Retrofit.userService().getAnswers(coin, above_uid, top_date, top_time)
+            .enqueue(object : Callback<ArrayList<Answer>> {
 
-                override fun onResponse(call: Call<ArrayList<Answer>>, response: Response<ArrayList<Answer>>) {
+                override fun onResponse(
+                    call: Call<ArrayList<Answer>>,
+                    response: Response<ArrayList<Answer>>
+                ) {
 
                     if (response.isSuccessful) {
 
@@ -175,7 +196,7 @@ class MemberRepo {
                     }
                 }
 
-                override fun onFailure(call: Call<ArrayList<Answer>>, t: Throwable) { }
-        })
+                override fun onFailure(call: Call<ArrayList<Answer>>, t: Throwable) {}
+            })
     }
 }

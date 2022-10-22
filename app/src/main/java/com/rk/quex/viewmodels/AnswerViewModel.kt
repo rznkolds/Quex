@@ -11,10 +11,9 @@ class AnswerViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private var memberRepo = MemberRepo()
 
-    private var _answers = MutableLiveData<ArrayList<Answer>>()
-
     var result = MutableLiveData<Boolean>()
 
+    private var _answers = MutableLiveData<ArrayList<Answer>>()
     val answers: LiveData<ArrayList<Answer>>
         get() {
 
@@ -36,5 +35,12 @@ class AnswerViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         memberRepo.getAnswers(coin, above_uid, top_date, top_time)
 
         _answers = memberRepo.answers
+    }
+
+    fun sendAnswer(above_uid: String, coin: String, comment: String, top_date: Int, top_time: Int, ) {
+
+        memberRepo.postAnswer (above_uid, coin, comment, top_date, top_time)
+
+        result = memberRepo.result
     }
 }

@@ -8,10 +8,9 @@ import com.rk.quex.data.repository.CoinRepo
 
 class HomeViewModel : ViewModel() {
 
-    private var repo = CoinRepo()
+    private var coinRepo = CoinRepo()
 
     private var _coins = MutableLiveData<ArrayList<Coin>>()
-
     val coins : LiveData<ArrayList<Coin>>
         get() {
 
@@ -19,12 +18,13 @@ class HomeViewModel : ViewModel() {
         }
 
     init {
-
-        getCoinList()
+        getCoins()
     }
 
-    private fun getCoinList() {
+    private fun getCoins() {
 
-        _coins = repo.getCoinList()
+        coinRepo.getCoins()
+
+        _coins = coinRepo.coins
     }
 }

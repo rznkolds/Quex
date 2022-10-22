@@ -9,9 +9,9 @@ import retrofit2.Response
 
 class CoinRepo {
 
-    fun getCoinList (): MutableLiveData<ArrayList<Coin>> {
+    val coins = MutableLiveData<ArrayList<Coin>>()
 
-        val result = MutableLiveData<ArrayList<Coin>>()
+    fun getCoins () {
 
         Retrofit.coinService().list().enqueue(object : Callback<ArrayList<Coin>> {
 
@@ -19,13 +19,11 @@ class CoinRepo {
 
                 if (response.isSuccessful) {
 
-                    result.value = response.body()
+                    coins.value = response.body()
                 }
             }
 
             override fun onFailure(call: Call<ArrayList<Coin>> , t: Throwable) {}
         })
-
-        return result
     }
 }

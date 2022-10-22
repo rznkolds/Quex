@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.rk.quex.adapter.CommentAdapter
 import com.rk.quex.databinding.FragmentCommentsBinding
 import com.rk.quex.viewmodels.CommentViewModel
-import java.util.*
 
 class Comments : Fragment() {
 
@@ -55,10 +54,6 @@ class Comments : Fragment() {
                 binding.commentRecycler.layoutManager = linear
                 binding.commentRecycler.adapter = adapter
                 adapter.setData(it)
-
-            } else {
-
-                binding.commentRecycler.visibility = View.INVISIBLE
             }
         }
 
@@ -70,6 +65,8 @@ class Comments : Fragment() {
 
                     sendComment(v.text.toString())
 
+                    binding.commentEditText.text.clear()
+
                     true
                 }
 
@@ -80,25 +77,13 @@ class Comments : Fragment() {
 
     private fun sendComment(comment: String) {
 
-        val calendar = Calendar.getInstance()
-
-        val date = calendar[Calendar.DAY_OF_MONTH].toString() +
-                calendar[Calendar.MONTH].toString() +
-                calendar[Calendar.YEAR].toString()
-
-        val time = calendar[Calendar.MILLISECOND].toString() +
-                calendar[Calendar.MINUTE].toString() +
-                calendar[Calendar.HOUR_OF_DAY].toString()
-
-        viewModel.sendComment(args.coin, comment, date.toInt(), time.toInt())
+        viewModel.sendComment(args.coin, comment)
 
         viewModel.result.observe(viewLifecycleOwner) {
 
             if (it) {
 
                 viewModel.getCommentList(args.coin)
-
-                toast("Yorumunuz başarılı bir şekilde eklendi")
 
             } else {
 
