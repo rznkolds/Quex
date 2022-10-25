@@ -1,4 +1,4 @@
-package com.rk.quex.adapter
+package com.rk.quex.ui.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

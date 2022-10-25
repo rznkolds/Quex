@@ -1,4 +1,4 @@
-package com.rk.quex.pieces
+package com.rk.quex.ui.comment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.rk.quex.adapter.CommentAdapter
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.databinding.FragmentCommentsBinding
-import com.rk.quex.viewmodels.CommentViewModel
 
 class Comments : Fragment() {
 
-    private val viewModel: CommentViewModel by viewModels()
     private lateinit var binding: FragmentCommentsBinding
-    private val adapter by lazy { CommentAdapter() }
     private val args: CommentsArgs by navArgs()
+    private val viewModel: CommentViewModel by viewModels()
+    private val adapter by lazy { CommentAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,7 +35,11 @@ class Comments : Fragment() {
 
         args.let {
 
-            Glide.with(this).load(it.picture).into(binding.sampleCoinPicture )
+            Glide.with(this)
+                .load(it.picture)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.sampleCoinPicture )
+
             binding.sampleCoinName.text = it.coin
             binding.sampleCoinPrice.text = it.price
         }
@@ -45,19 +48,19 @@ class Comments : Fragment() {
 
             if (!it.isNullOrEmpty()) {
 
-                val linear = LinearLayoutManager(requireContext()).apply {
+                 LinearLayoutManager(requireContext()).apply {
 
                     reverseLayout = true
                     stackFromEnd = true
+                    binding.commentRecycler.layoutManager = this
                 }
 
-                binding.commentRecycler.layoutManager = linear
                 binding.commentRecycler.adapter = adapter
                 adapter.setData(it)
             }
         }
 
-        binding.commentEditText.setOnEditorActionListener { v, actionId, event ->
+        binding.commentEditText.setOnEditorActionListener { v, actionId, _ ->
 
             when (actionId) {
 
@@ -77,13 +80,13 @@ class Comments : Fragment() {
 
     private fun sendComment(comment: String) {
 
-        viewModel.sendComment(args.coin, comment)
+        viewModel.postComment(args.coin, comment)
 
         viewModel.result.observe(viewLifecycleOwner) {
 
             if (it) {
 
-                viewModel.getCommentList(args.coin)
+                viewModel.getComments(args.coin)
 
             } else {
 
@@ -92,7 +95,7 @@ class Comments : Fragment() {
         }
     }
 
-    private fun toast(text: String) {
+    private fun toast( text: String) {
 
         Toast.makeText(this.requireContext(), text, Toast.LENGTH_SHORT).show()
     }

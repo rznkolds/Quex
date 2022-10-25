@@ -1,4 +1,4 @@
-package com.rk.quex.pieces
+package com.rk.quex.ui.enter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.rk.quex.R
 import com.rk.quex.databinding.FragmentEnterBinding
 import com.rk.quex.network.Connection
-import com.rk.quex.viewmodels.EnterViewModel
 
 class Enter : Fragment() {
 
@@ -43,10 +43,6 @@ class Enter : Fragment() {
                 val direction = EnterDirections.actionEnterToHome()
 
                 this.findNavController().navigate(direction)
-
-            } ?: {
-
-                toast("Giriş yapınız")
             }
         }
 
@@ -65,18 +61,16 @@ class Enter : Fragment() {
 
     private fun login() {
 
-        viewModel.userLogin(
+        viewModel.login(
             binding.enterEmail.text.toString(),
             binding.enterPassword.text.toString()
         )
 
         viewModel.result.observe(viewLifecycleOwner) {
 
-            if (it == true) {
+            if (it) {
 
-                val direction = EnterDirections.actionEnterToHome()
-
-                this.findNavController().navigate(direction)
+                this.findNavController().navigate(EnterDirections.actionEnterToHome())
 
             } else {
 

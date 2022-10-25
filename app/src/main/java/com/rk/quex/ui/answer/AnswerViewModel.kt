@@ -1,4 +1,4 @@
-package com.rk.quex.viewmodels
+package com.rk.quex.ui.answer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,13 +11,16 @@ class AnswerViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
     private var memberRepo = MemberRepo()
 
-    var result = MutableLiveData<Boolean>()
-
     private var _answers = MutableLiveData<ArrayList<Answer>>()
     val answers: LiveData<ArrayList<Answer>>
         get() {
-
             return _answers
+        }
+
+    private var _result = MutableLiveData<Boolean>()
+    val result: LiveData<Boolean>
+        get() {
+            return _result
         }
 
     init {
@@ -27,7 +30,7 @@ class AnswerViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         val date = savedStateHandle.get<Int>("date")!!.toInt()
         val time = savedStateHandle.get<Int>("time")!!.toInt()
 
-        getAnswers(coin,uid,date,time)
+        getAnswers(coin, uid, date, time)
     }
 
     fun getAnswers(coin: String, above_uid: String, top_date: Int, top_time: Int) {
@@ -37,10 +40,16 @@ class AnswerViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         _answers = memberRepo.answers
     }
 
-    fun sendAnswer(above_uid: String, coin: String, comment: String, top_date: Int, top_time: Int, ) {
+    fun postAnswer(
+        above_uid: String,
+        coin: String,
+        comment: String,
+        top_date: Int,
+        top_time: Int,
+    ) {
 
-        memberRepo.postAnswer (above_uid, coin, comment, top_date, top_time)
+        memberRepo.postAnswer(above_uid, coin, comment, top_date, top_time)
 
-        result = memberRepo.result
+        _result = memberRepo.result
     }
 }

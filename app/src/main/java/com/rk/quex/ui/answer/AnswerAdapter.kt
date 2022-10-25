@@ -1,4 +1,4 @@
-package com.rk.quex.adapter
+package com.rk.quex.ui.answer
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,20 +6,16 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Coin
 import com.rk.quex.databinding.AnswerItemBinding
-import com.rk.quex.databinding.CoinItemBinding
-import com.rk.quex.pieces.AnswersDirections
-import com.rk.quex.pieces.HomeDirections
 import com.rk.quex.utils.AnswerDiffUtil
-import com.rk.quex.utils.CoinDiffUtil
 
 class AnswerAdapter : RecyclerView.Adapter<AnswerAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Answer>()
 
-    inner class AdapterHolder(val binding: AnswerItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class AdapterHolder(val binding: AnswerItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHolder {
 
@@ -38,17 +34,19 @@ class AnswerAdapter : RecyclerView.Adapter<AnswerAdapter.AdapterHolder>() {
 
         val current = list[position]
 
-        Glide.with(holder.itemView).load(current.url ).into(holder.binding.answerPicture)
+        Glide.with(holder.itemView)
+            .load(current.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.binding.answerPicture)
 
         holder.binding.answerName.text = current.name
-
         holder.binding.answerText.text = current.comment
 
         holder.itemView.setOnClickListener {
 
             it.findNavController().navigate(
 
-                AnswersDirections.actionAnswersToProfile (
+                AnswersDirections.actionAnswersToProfile(
                     current.uid
                 )
             )

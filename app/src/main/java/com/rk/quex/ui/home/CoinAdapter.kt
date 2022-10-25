@@ -1,4 +1,4 @@
-package com.rk.quex.adapter
+package com.rk.quex.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.data.model.Coin
 import com.rk.quex.databinding.CoinItemBinding
-import com.rk.quex.pieces.HomeDirections
 import com.rk.quex.utils.CoinDiffUtil
 
 class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
@@ -34,10 +34,12 @@ class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
 
         val current = list[position]
 
-        Glide.with(holder.itemView).load(current.image).into(holder.binding.coinPicture)
+        Glide.with(holder.itemView)
+            .load(current.image)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.binding.coinPicture)
 
         holder.binding.coinName.text = current.name
-
         holder.binding.coinPrice.text = current.current_price
 
         holder.itemView.setOnClickListener {

@@ -4,7 +4,6 @@ import com.rk.quex.data.model.Answer
 import com.rk.quex.data.model.Comment
 import com.rk.quex.data.model.Favorite
 import com.rk.quex.data.model.User
-import com.rk.quex.pieces.Answers
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

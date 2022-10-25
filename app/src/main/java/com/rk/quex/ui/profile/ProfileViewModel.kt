@@ -1,4 +1,4 @@
-package com.rk.quex.viewmodels
+package com.rk.quex.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

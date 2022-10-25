@@ -2,6 +2,7 @@ package com.rk.quex.data.repository
 
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -20,9 +21,12 @@ class MemberRepo {
 
     private val auth by lazy { Firebase.auth }
     private val cloud by lazy { Firebase.storage.reference }
+    private val service = Retrofit.userService()
     val result = MutableLiveData<Boolean>()
+    val picture = MutableLiveData<Uri>()
     val user = MutableLiveData<User>()
     val favorites = MutableLiveData<ArrayList<Favorite>>()
+    val calendar = Calendar.getInstance()
     val comments = MutableLiveData<ArrayList<Comment>>()
     val answers = MutableLiveData<ArrayList<Answer>>()
 
@@ -46,7 +50,7 @@ class MemberRepo {
 
                     val user = User(auth.currentUser?.uid.toString(), name, text, p.toString())
 
-                    Retrofit.userService().postUser(user).enqueue(object : Callback<String> {
+                    service.postUser(user).enqueue(object : Callback<String> {
 
                         override fun onResponse(call: Call<String>, response: Response<String>) {
 
@@ -60,11 +64,21 @@ class MemberRepo {
         }
     }
 
+    // Get current user's picture
+
+    fun getPicture() {
+
+        cloud.child(auth.currentUser?.uid.toString()).downloadUrl.addOnSuccessListener {
+
+            picture.value = it
+        }
+    }
+
     // Get current user's data
 
     fun getProfile(uid: String) {
 
-        Retrofit.userService().getUser(uid).enqueue(object : Callback<User> {
+        service.getUser(uid).enqueue(object : Callback<User> {
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
 
@@ -82,7 +96,7 @@ class MemberRepo {
 
     fun getFavorites(uid: String) {
 
-        Retrofit.userService().getFavoriteCoins(uid)
+        service.getFavoriteCoins(uid)
             .enqueue(object : Callback<ArrayList<Favorite>> {
 
                 override fun onResponse(
@@ -101,30 +115,19 @@ class MemberRepo {
 
     // Saving and receiving comments
 
-    fun postComment(coin: String, comment: String) {
-
-        val calendar = Calendar.getInstance()
-
-        val date = calendar[Calendar.DAY_OF_MONTH].toString() +
-                calendar[Calendar.MONTH].toString() +
-                calendar[Calendar.YEAR].toString()
-
-        val time = calendar[Calendar.MILLISECOND].toString() +
-                calendar[Calendar.MINUTE].toString() +
-                calendar[Calendar.HOUR_OF_DAY].toString()
+    fun postComment(coin: String, text: String) {
 
         val comment = Comment(
-
             auth.uid.toString(),
             "",
             "",
             coin,
-            comment,
-            date.toInt(),
-            time.toInt()
+            text,
+            date(),
+            time()
         )
 
-        Retrofit.userService().postComment(comment).enqueue(object : Callback<String> {
+        service.postComment(comment).enqueue(object : Callback<String> {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
 
@@ -135,9 +138,27 @@ class MemberRepo {
         })
     }
 
+    private fun date(): Int {
+
+        val date = calendar[Calendar.DAY_OF_MONTH].toString() +
+                calendar[Calendar.MONTH].toString() +
+                calendar[Calendar.YEAR].toString()
+
+        return date.toInt()
+    }
+
+    private fun time(): Int {
+
+        val time = calendar[Calendar.MILLISECOND].toString() +
+                calendar[Calendar.MINUTE].toString() +
+                calendar[Calendar.HOUR_OF_DAY].toString()
+
+        return time.toInt()
+    }
+
     fun getComments(coin: String) {
 
-        Retrofit.userService().getComments(coin).enqueue(object : Callback<ArrayList<Comment>> {
+        service.getComments(coin).enqueue(object : Callback<ArrayList<Comment>> {
 
             override fun onResponse(
                 call: Call<ArrayList<Comment>>, response: Response<ArrayList<Comment>>
@@ -155,21 +176,20 @@ class MemberRepo {
 
     // Saving and receiving answers
 
-    fun postAnswer(above_uid: String, coin: String, comment: String, top_date: Int, top_time: Int) {
+    fun postAnswer(uid: String, coin: String, text: String, date: Int, time: Int) {
 
         val answer = Answer(
-
             auth.uid.toString(),
             "",
-            above_uid,
+            uid,
             "",
             coin,
-            comment,
-            top_date,
-            top_time
+            text,
+            date,
+            time
         )
 
-        Retrofit.userService().postAnswer(answer).enqueue(object : Callback<String> {
+        service.postAnswer(answer).enqueue(object : Callback<String> {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
 
@@ -180,10 +200,9 @@ class MemberRepo {
         })
     }
 
-    fun getAnswers(coin: String, above_uid: String, top_date: Int, top_time: Int) {
+    fun getAnswers(coin: String, uid: String, date: Int, time: Int) {
 
-        Retrofit.userService().getAnswers(coin, above_uid, top_date, top_time)
-            .enqueue(object : Callback<ArrayList<Answer>> {
+        service.getAnswers(coin, uid, date, time).enqueue(object : Callback<ArrayList<Answer>> {
 
                 override fun onResponse(
                     call: Call<ArrayList<Answer>>,

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/create"
-        android:name="com.rk.quex.pieces.Create"
+        android:name="com.rk.quex.ui.create.Create"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" >
 
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/enter"
-        android:name="com.rk.quex.pieces.Enter"
+        android:name="com.rk.quex.ui.enter.Enter"
         android:label="fragment_enter"
         tools:layout="@layout/fragment_enter">
 
@@ -59,7 +59,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.rk.quex.pieces.Home"
+        android:name="com.rk.quex.ui.home.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.rk.quex.pieces.Profile"
+        android:name="com.rk.quex.ui.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
 
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/comments"
-        android:name="com.rk.quex.pieces.Comments"
+        android:name="com.rk.quex.ui.comment.Comments"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/answers"
-        android:name="com.rk.quex.pieces.Answers"
+        android:name="com.rk.quex.ui.answer.Answers"
         android:label="fragment_answers"
         tools:layout="@layout/fragment_answers" >
 

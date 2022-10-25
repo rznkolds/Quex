@@ -1,6 +1,6 @@
 package com.rk.quex.data.model
 
-data class User (
+data class User(
 
     val uid: String,
     val name: String,

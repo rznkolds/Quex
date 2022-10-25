@@ -11,11 +11,14 @@ class CoinRepo {
 
     val coins = MutableLiveData<ArrayList<Coin>>()
 
-    fun getCoins () {
+    fun getCoins() {
 
         Retrofit.coinService().list().enqueue(object : Callback<ArrayList<Coin>> {
 
-            override fun onResponse(call: Call<ArrayList<Coin>> , response: Response<ArrayList<Coin>>) {
+            override fun onResponse(
+                call: Call<ArrayList<Coin>>,
+                response: Response<ArrayList<Coin>>
+            ) {
 
                 if (response.isSuccessful) {
 
@@ -23,7 +26,7 @@ class CoinRepo {
                 }
             }
 
-            override fun onFailure(call: Call<ArrayList<Coin>> , t: Throwable) {}
+            override fun onFailure(call: Call<ArrayList<Coin>>, t: Throwable) {}
         })
     }
 }

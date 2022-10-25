@@ -1,4 +1,4 @@
-package com.rk.quex.pieces
+package com.rk.quex.ui.create
 
 import android.app.Activity
 import android.content.Intent
@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.databinding.FragmentCreateBinding
-import com.rk.quex.viewmodels.CreateViewModel
 
 class Create : Fragment() {
 
@@ -42,7 +42,10 @@ class Create : Fragment() {
 
                 picture = it.data?.data
 
-                Glide.with(this).load(picture).into(binding.accountProfile)
+                Glide.with(this)
+                    .load(picture)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.accountProfile)
             }
         }
 
@@ -58,7 +61,7 @@ class Create : Fragment() {
 
         binding.create.setOnClickListener {
 
-            create()
+            createUser()
         }
 
         binding.enterScreen.setOnClickListener {
@@ -69,7 +72,7 @@ class Create : Fragment() {
         }
     }
 
-    private fun create() {
+    private fun createUser() {
 
         if (binding.accountProfile.drawable != null) {
 
@@ -79,7 +82,7 @@ class Create : Fragment() {
                 binding.accountPassword.text.isNotEmpty()
             ) {
 
-                viewModel.createUser(
+                viewModel.register(
                     binding.accountName.text.toString(),
                     binding.accountText.text.toString(),
                     binding.accountEmail.text.toString(),
@@ -97,7 +100,7 @@ class Create : Fragment() {
 
                     } else {
 
-                        toast("Kullanıcı Tanımlama Geçersiz")
+                        toast("Kullanıcı verileri eksik")
                     }
                 }
 

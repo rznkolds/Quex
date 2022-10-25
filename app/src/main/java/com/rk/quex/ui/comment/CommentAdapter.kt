@@ -1,4 +1,4 @@
-package com.rk.quex.adapter
+package com.rk.quex.ui.comment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.CommentItemBinding
-import com.rk.quex.pieces.CommentsDirections
 import com.rk.quex.utils.CommentDiffUtil
 
 class CommentAdapter : RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
@@ -36,7 +36,10 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.AdapterHolder>() {
 
         val current = list[position]
 
-        Glide.with(holder.itemView).load(current.url).into(holder.binding.commentPicture)
+        Glide.with(holder.itemView)
+            .load(current.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.binding.commentPicture)
 
         holder.binding.commentName.text = current.name
         holder.binding.commentText.text = current.comment

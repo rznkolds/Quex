@@ -6,7 +6,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pieces.Answers" >
+    tools:context=".ui.answer.Answers" >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/sample_comment_picture"
