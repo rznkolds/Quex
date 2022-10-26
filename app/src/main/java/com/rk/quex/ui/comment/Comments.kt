@@ -12,23 +12,17 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.rk.quex.R
+import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentCommentsBinding
+import com.rk.quex.databinding.FragmentCreateBinding
 
-class Comments : Fragment() {
+class Comments : Fragment(R.layout.fragment_comments) {
 
-    private lateinit var binding: FragmentCommentsBinding
+    private val binding by viewBinding(FragmentCommentsBinding::bind)
     private val args: CommentsArgs by navArgs()
     private val viewModel: CommentViewModel by viewModels()
     private val adapter by lazy { CommentAdapter() }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-
-        binding = FragmentCommentsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

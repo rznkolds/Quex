@@ -12,25 +12,17 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.rk.quex.R
+import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentAnswersBinding
+import com.rk.quex.databinding.FragmentCommentsBinding
 
-class Answers : Fragment() {
+class Answers : Fragment(R.layout.fragment_answers) {
 
-    private lateinit var binding: FragmentAnswersBinding
+    private val binding by viewBinding(FragmentAnswersBinding::bind)
     private val args: AnswersArgs by navArgs()
     private val viewModel: AnswerViewModel by viewModels()
     private val adapter by lazy { AnswerAdapter() }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        binding = FragmentAnswersBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

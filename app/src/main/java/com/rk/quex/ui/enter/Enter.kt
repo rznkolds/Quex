@@ -1,9 +1,7 @@
 package com.rk.quex.ui.enter
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,23 +11,13 @@ import com.google.firebase.ktx.Firebase
 import com.rk.quex.R
 import com.rk.quex.databinding.FragmentEnterBinding
 import com.rk.quex.network.Connection
+import com.rk.quex.common.viewBinding
 
-class Enter : Fragment() {
+class Enter : Fragment(R.layout.fragment_enter) {
 
+    private val binding by viewBinding(FragmentEnterBinding::bind)
     private val auth by lazy { Firebase.auth.currentUser }
     private val viewModel: EnterViewModel by viewModels()
-    private lateinit var binding: FragmentEnterBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        binding = FragmentEnterBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
