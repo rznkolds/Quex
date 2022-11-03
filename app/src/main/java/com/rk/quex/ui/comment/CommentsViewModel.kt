@@ -5,43 +5,38 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Comment
-import com.rk.quex.data.repository.MemberRepo
+import com.rk.quex.data.repository.CoinRepo
 
-class CommentViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
+class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private var memberRepo = MemberRepo()
+    private var coinRepo = CoinRepo()
 
     private var _comments = MutableLiveData<ArrayList<Comment>>()
     val comments: LiveData<ArrayList<Comment>>
-        get() {
-            return _comments
-        }
+        get() = _comments
 
     private var _result = MutableLiveData<Boolean>()
     val result: LiveData<Boolean>
-        get() {
-            return _result
-        }
+        get() = _result
 
     init {
-
         savedStateHandle.get<String>("coin")?.let {
-
             getComments(it)
         }
     }
 
     fun getComments(coin: String) {
-
-        memberRepo.getComments(coin)
-
-        _comments = memberRepo.comments
+        coinRepo.getComments(coin)
+        _comments = coinRepo.comments
     }
 
     fun postComment(coin: String, comment: String) {
+        coinRepo.postComment(coin, comment)
+        _result = coinRepo.result
+    }
 
-        memberRepo.postComment(coin, comment)
-
-        _result = memberRepo.result
+    fun deleteComment(comment: Comment) {
+        coinRepo.deleteComment (comment)
+        _result = coinRepo.result
     }
 }

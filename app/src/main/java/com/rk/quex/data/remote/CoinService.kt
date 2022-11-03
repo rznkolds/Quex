@@ -6,6 +6,8 @@ import retrofit2.http.GET
 
 interface CoinService {
 
+    // Get coin list
+
     @GET("coins/markets?vs_currency=usd")
-    fun list(): Call<ArrayList<Coin>>
+    fun getCoins(): Call<ArrayList<Coin>>
 }

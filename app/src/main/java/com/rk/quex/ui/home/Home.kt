@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.rk.quex.R
+import com.rk.quex.common.setPicture
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentHomeBinding
 
@@ -24,31 +23,38 @@ class Home : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.coins.observe(viewLifecycleOwner) {
-
-            if (!it.isNullOrEmpty()) {
-
-                binding.coinRecycler.layoutManager = LinearLayoutManager(requireContext())
-                binding.coinRecycler.adapter = adapter
-                adapter.setData(it)
+        adapter.onCoinClick = {
+            if (it.name != null && it.image != null && it.current_price != null) {
+                findNavController().navigate(
+                    HomeDirections.actionHomeToComments(
+                        it.name, it.image, it.current_price
+                    )
+                )
             }
         }
 
-        viewModel.picture.observe(viewLifecycleOwner) {
-
-            Glide.with(this)
-                .load(it)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(binding.homeProfile)
+        binding.homeProfile.setOnClickListener {
+            auth?.uid?.let {
+                findNavController().navigate(HomeDirections.actionHomeToProfile(it))
+            }
         }
 
-        binding.homeProfile.setOnClickListener {
+        initObservers()
+    }
 
-            auth?.uid?.let {
+    private fun initObservers() {
 
-                val direction = HomeDirections.actionHomeToProfile(it)
+        with(binding) {
+            viewModel.coins.observe(viewLifecycleOwner) {
+                if (!it.isNullOrEmpty()) {
+                    coinRecycler.layoutManager = LinearLayoutManager(requireContext())
+                    coinRecycler.adapter = adapter
+                    adapter.setData(it)
+                }
+            }
 
-                findNavController().navigate(direction)
+            viewModel.picture.observe(viewLifecycleOwner) {
+                homeProfile.setPicture(it.toString())
             }
         }
     }

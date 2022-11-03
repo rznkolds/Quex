@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.enter.Enter">
+    tools:context=".ui.signin.SignInFragment">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/enter_animation"
+        android:id="@+id/sign_in_animation"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="80dp"
@@ -21,7 +21,7 @@
         app:lottie_rawRes="@raw/blockchain" />
 
     <EditText
-        android:id="@+id/enter_email"
+        android:id="@+id/sign_in_email"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
@@ -34,13 +34,13 @@
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/enter_animation"
-        app:layout_constraintStart_toStartOf="@+id/enter_animation"
-        app:layout_constraintTop_toBottomOf="@+id/enter_animation"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_animation"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_animation"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_animation"
         tools:ignore="RtlSymmetry" />
 
     <EditText
-        android:id="@+id/enter_password"
+        android:id="@+id/sign_in_password"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -53,25 +53,25 @@
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/enter_email"
-        app:layout_constraintStart_toStartOf="@+id/enter_email"
-        app:layout_constraintTop_toBottomOf="@+id/enter_email"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_email"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_email"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_email"
         tools:ignore="RtlSymmetry,TextFields" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/enter"
+        android:id="@+id/go_home_from_sign_in"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/enter_button"
         android:text="@string/login"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/enter_password"
-        app:layout_constraintStart_toStartOf="@+id/enter_password"
-        app:layout_constraintTop_toBottomOf="@+id/enter_password" />
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_password"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_password"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_password" />
 
     <TextView
-        android:id="@+id/create_screen"
+        android:id="@+id/go_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -80,8 +80,8 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/enter"
-        app:layout_constraintStart_toStartOf="@+id/enter"
-        app:layout_constraintTop_toBottomOf="@+id/enter" />
+        app:layout_constraintEnd_toEndOf="@+id/go_home_from_sign_in"
+        app:layout_constraintStart_toStartOf="@+id/go_home_from_sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/go_home_from_sign_in" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/enter">
+    app:startDestination="@id/sign_in">
 
     <fragment
-        android:id="@+id/create"
-        android:name="com.rk.quex.ui.create.Create"
-        android:label="fragment_create"
-        tools:layout="@layout/fragment_create" >
+        android:id="@+id/go_home_from_sign_up"
+        android:name="com.rk.quex.ui.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up">
 
         <action
-            android:id="@+id/action_create_to_home"
+            android:id="@+id/action_sign_up_to_home"
             app:destination="@id/home"
             app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
@@ -21,25 +21,25 @@
             app:popUpToInclusive="false" />
 
         <action
-            android:id="@+id/action_create_to_enter"
-            app:destination="@id/enter"
+            android:id="@+id/action_sign_up_to_sign_in"
+            app:destination="@id/sign_in"
             app:enterAnim="@anim/open_component_from_left"
             app:exitAnim="@anim/close_component_from_right"
             app:launchSingleTop="false"
-            app:popUpTo="@id/enter"
+            app:popUpTo="@id/sign_in"
             app:popUpToInclusive="true" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/enter"
-        android:name="com.rk.quex.ui.enter.Enter"
-        android:label="fragment_enter"
-        tools:layout="@layout/fragment_enter">
+        android:id="@+id/sign_in"
+        android:name="com.rk.quex.ui.signin.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in">
 
         <action
-            android:id="@+id/action_enter_to_create"
-            app:destination="@id/create"
+            android:id="@+id/action_sign_in_to_sign_up"
+            app:destination="@id/go_home_from_sign_up"
             app:enterAnim="@anim/open_component_from_right"
             app:exitAnim="@anim/close_component_from_left"
             app:launchSingleTop="false"
@@ -48,7 +48,7 @@
             app:popUpToInclusive="false" />
 
         <action
-            android:id="@+id/action_enter_to_home"
+            android:id="@+id/action_sign_in_to_home"
             app:destination="@id/home"
             app:enterAnim="@anim/open_component_from_right"
             app:launchSingleTop="false"
@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.rk.quex.ui.profile.Profile"
+        android:name="com.rk.quex.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
 
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/comments"
-        android:name="com.rk.quex.ui.comment.Comments"
+        android:name="com.rk.quex.ui.comment.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
 
@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/answers"
-        android:name="com.rk.quex.ui.answer.Answers"
+        android:name="com.rk.quex.ui.answer.AnswersFragment"
         android:label="fragment_answers"
         tools:layout="@layout/fragment_answers" >
 

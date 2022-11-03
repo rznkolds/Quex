@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.comment.Comments">
+    tools:context=".ui.comment.CommentsFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/sample_coin_picture"

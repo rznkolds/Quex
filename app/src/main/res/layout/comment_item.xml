@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item"
+    android:id="@+id/comment_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -31,12 +31,15 @@
     <TextView
         android:id="@+id/comment_text"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/idea_background"
         android:maxWidth="310dp"
         android:padding="10dp"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/comment_delete"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/comment_name"
         app:layout_constraintTop_toBottomOf="@+id/comment_name" />
 
@@ -52,6 +55,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/comment_text"
         app:layout_constraintTop_toBottomOf="@+id/comment_text" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/comment_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/delete_icon"
+        app:civ_border_color="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

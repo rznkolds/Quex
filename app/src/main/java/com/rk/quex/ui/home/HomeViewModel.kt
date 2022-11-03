@@ -14,34 +14,25 @@ class HomeViewModel : ViewModel() {
     private var memberRepo = MemberRepo()
 
     private var _coins = MutableLiveData<ArrayList<Coin>>()
-    val coins : LiveData<ArrayList<Coin>>
-        get() {
-            return _coins
-        }
+    val coins: LiveData<ArrayList<Coin>>
+        get() = _coins
 
     private var _picture = MutableLiveData<Uri>()
-    val picture : LiveData<Uri>
-        get() {
-            return _picture
-        }
+    val picture: LiveData<Uri>
+        get() = _picture
 
     init {
         getCoins()
-
         getPicture()
     }
 
     private fun getCoins() {
-
         coinRepo.getCoins()
-
         _coins = coinRepo.coins
     }
 
-    private fun getPicture(){
-
+    private fun getPicture() {
         memberRepo.getPicture()
-
         _picture = memberRepo.picture
     }
 }
