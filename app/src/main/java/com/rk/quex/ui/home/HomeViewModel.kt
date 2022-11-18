@@ -24,15 +24,12 @@ class HomeViewModel : ViewModel() {
     init {
         getCoins()
         getPicture()
-    }
 
-    private fun getCoins() {
-        coinRepo.getCoins()
         _coins = coinRepo.coins
-    }
-
-    private fun getPicture() {
-        memberRepo.getPicture()
         _picture = memberRepo.picture
     }
+
+    private fun getCoins() = coinRepo.getCoins()
+
+    private fun getPicture() = memberRepo.getPicture()
 }

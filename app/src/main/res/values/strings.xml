@@ -4,13 +4,11 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="create_new_account">Create New Account</string>
-    <string name="account_name">Acoount name</string>
-    <string name="account_text">Account text</string>
+    <string name="account_name">Profile name</string>
+    <string name="account_text">Profile description</string>
     <string name="create">Create</string>
     <string name="register">Don\'t have an account ? Then register</string>
     <string name="enter">Do you have an account ? Then login</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
 </resources>

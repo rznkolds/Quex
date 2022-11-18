@@ -23,20 +23,14 @@ class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         savedStateHandle.get<String>("coin")?.let {
             getComments(it)
         }
-    }
 
-    fun getComments(coin: String) {
-        coinRepo.getComments(coin)
         _comments = coinRepo.comments
-    }
-
-    fun postComment(coin: String, comment: String) {
-        coinRepo.postComment(coin, comment)
         _result = coinRepo.result
     }
 
-    fun deleteComment(comment: Comment) {
-        coinRepo.deleteComment (comment)
-        _result = coinRepo.result
-    }
+    fun getComments(coin: String) = coinRepo.getComments(coin)
+
+    fun postComment(coin: String, comment: String) = coinRepo.postComment(coin, comment)
+
+    fun deleteComment(comment: Comment) = coinRepo.deleteComment (comment)
 }

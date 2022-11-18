@@ -27,15 +27,12 @@ class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
             getProfile(it)
             getFavorites(it)
         }
-    }
 
-    private fun getProfile(uid: String) {
-        memberRepo.getProfile(uid)
         _informations = memberRepo.user
-    }
-
-    private fun getFavorites(uid: String) {
-        coinRepo.getFavorites(uid)
         _favorites = coinRepo.favorites
     }
+
+    private fun getProfile(uid: String) = memberRepo.getProfile(uid)
+
+    private fun getFavorites(uid: String) = coinRepo.getFavorites(uid)
 }

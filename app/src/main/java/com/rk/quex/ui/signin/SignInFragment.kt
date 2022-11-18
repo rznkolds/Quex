@@ -31,7 +31,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
 
         binding.goHomeFromSignIn.setOnClickListener {
-            login()
+            login(binding.signInEmail.text.toString(), binding.signInPassword.text.toString())
         }
 
         binding.goSignUp.setOnClickListener {
@@ -49,12 +49,10 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             }
         }
 
-        viewModel.failMessage.observe(viewLifecycleOwner) {
+        viewModel.fail.observe(viewLifecycleOwner) {
             requireContext().showToast(it)
         }
     }
 
-    private fun login() {
-        viewModel.login(binding.signInEmail.text.toString(), binding.signInPassword.text.toString())
-    }
+    private fun login(mail : String,password:String) = viewModel.login(mail,password)
 }

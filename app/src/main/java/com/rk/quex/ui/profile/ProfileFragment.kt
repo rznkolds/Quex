@@ -16,7 +16,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val viewModel: ProfileViewModel by viewModels()
 
-    private val adapter by lazy { FavoriteAdapter() }
+    private val adapter by lazy { ProfileAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,26 +24,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         initObservers()
     }
 
-    private fun initObservers() {
+    private fun initObservers() = with(binding) {
 
-        with(binding) {
-
-            viewModel.informations.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    it.url?.let { it1 ->
-                        profilePicture.setPicture(it1)
-                    }
-                    profileName.text = it.name
-                    profileDescription.text = it.description
+        viewModel.informations.observe(viewLifecycleOwner) {
+            if (it != null) {
+                it.profile?.let { it1 ->
+                    profilePicture.setPicture(it1)
                 }
+                profileName.text = it.name
+                profileDescription.text = it.description
             }
+        }
 
-            viewModel.favorites.observe(viewLifecycleOwner) {
-                if (!it.isNullOrEmpty()) {
-                    favoritesRecycler.layoutManager = LinearLayoutManager(requireContext())
-                    favoritesRecycler.adapter = adapter
-                    adapter.setData(it)
-                }
+        viewModel.favorites.observe(viewLifecycleOwner) {
+            if (it != null) {
+                favoritesRecycler.layoutManager = LinearLayoutManager(requireContext())
+                favoritesRecycler.adapter = adapter
+                adapter.setData(it)
             }
         }
     }

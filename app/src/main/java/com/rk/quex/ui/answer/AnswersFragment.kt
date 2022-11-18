@@ -11,8 +11,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rk.quex.R
 import com.rk.quex.common.endsWith
-import com.rk.quex.common.setPicture
-import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Answer
 import com.rk.quex.databinding.FragmentAnswersBinding
@@ -28,12 +26,6 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            args.let {
-                sampleCommentPicture.setPicture(it.url)
-                sampleCommentName.text = it.name
-                sampleCommentText.text = it.comment
-            }
-
             adapter.onAnswerClick = {
                 findNavController().navigate(AnswersFragmentDirections.actionAnswersToProfile(it))
             }
@@ -42,7 +34,7 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
                 it.comment?.let { _ ->
                     AlertDialog.Builder(requireContext()).apply {
                         setMessage("Yanıtın silinsin mi ?")
-                        setPositiveButton(R.string.yes) { dialog, id ->
+                        setPositiveButton(R.string.yes) { _, _ ->
                             deleteAnswer(it)
                         }
                         create()
@@ -73,7 +65,7 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
     private fun initObservers() = with(binding) {
 
         viewModel.answers.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()) {
+            if ( it != null ) {
                 if (it.size <= 8) {
                     LinearLayoutManager(requireContext()).apply {
                         answerRecycler.layoutManager = this
@@ -88,31 +80,15 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
                 adapter.setData(it)
             }
         }
-    }
-
-    private fun sendAnswer(comment: String) {
-
-        viewModel.postAnswer(args.uid, args.coin, comment, args.date, args.time)
 
         viewModel.result.observe(viewLifecycleOwner) {
             if (it) {
-                viewModel.getAnswers(args.coin, args.uid, args.date, args.time)
-            } else {
-                requireContext().showToast("Yanıtın eklenemedi")
+                viewModel.getAnswers(args.uid, args.coin, args.date, args.time)
             }
         }
     }
 
-    private fun deleteAnswer(answer: Answer) {
+    private fun sendAnswer(comment: String) = viewModel.postAnswer(args.uid, args.coin, comment, args.date, args.time)
 
-        viewModel.deleteAnswer(answer)
-
-        viewModel.result.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.getAnswers(args.coin, args.uid, args.date, args.time)
-            } else {
-                requireContext().showToast("Yanıtın eklenemedi")
-            }
-        }
-    }
+    private fun deleteAnswer(answer: Answer) = viewModel.deleteAnswer(answer)
 }

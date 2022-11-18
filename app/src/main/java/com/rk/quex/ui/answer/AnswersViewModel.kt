@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Comment
 import com.rk.quex.data.repository.CoinRepo
 
 class AnswersViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
@@ -21,26 +20,20 @@ class AnswersViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
         get() = _result
 
     init {
-        val coin = savedStateHandle.get<String>("coin").toString()
         val uid = savedStateHandle.get<String>("uid").toString()
+        val coin = savedStateHandle.get<String>("coin").toString()
         val date = savedStateHandle.get<Int>("date")!!.toInt()
         val time = savedStateHandle.get<Int>("time")!!.toInt()
 
-        getAnswers(coin, uid, date, time)
-    }
+        getAnswers(uid, coin, date, time)
 
-    fun getAnswers(coin: String, uid: String, date: Int, time: Int) {
-        coinRepo.getAnswers(coin, uid, date, time)
         _answers = coinRepo.answers
-    }
-
-    fun postAnswer(uid: String, coin: String, comment: String, date: Int, time: Int) {
-        coinRepo.postAnswer(uid, coin, comment, date, time)
         _result = coinRepo.result
     }
 
-    fun deleteAnswer(answer: Answer) {
-        coinRepo.deleteAnswer(answer)
-        _result = coinRepo.result
-    }
+    fun getAnswers(uid: String, coin: String, date: Int, time: Int) = coinRepo.getAnswers(coin, uid, date, time)
+
+    fun postAnswer(uid: String, coin: String, comment: String, date: Int, time: Int) = coinRepo.postAnswer(uid, coin, comment, date, time)
+
+    fun deleteAnswer(answer: Answer) = coinRepo.deleteAnswer(answer)
 }

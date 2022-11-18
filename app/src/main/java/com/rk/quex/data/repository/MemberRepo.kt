@@ -1,21 +1,17 @@
 package com.rk.quex.data.repository
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.rk.quex.common.Retrofit
-import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Comment
-import com.rk.quex.data.model.Favorite
+import com.rk.quex.data.model.Status
 import com.rk.quex.data.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import kotlin.collections.ArrayList
 
 class MemberRepo {
 
@@ -45,16 +41,16 @@ class MemberRepo {
 
                     val user = User(auth.currentUser?.uid.toString(), name, description, p.toString())
 
-                    userService.postUser(user).enqueue(object : Callback<String> {
+                    userService.postUser(user).enqueue(object : Callback<Status> {
 
                         override fun onResponse(
-                            call: Call<String>,
-                            response: Response<String>
+                            call: Call<Status>,
+                            response: Response<Status>
                         ) {
-                            result.value = response.isSuccessful
+                            result.value = response.body()?.received
                         }
 
-                        override fun onFailure(call: Call<String>, t: Throwable) {}
+                        override fun onFailure(call: Call<Status>, t: Throwable) {}
                     })
                 }
             }

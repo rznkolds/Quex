@@ -35,26 +35,14 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
             }
 
             adapter.onShowAnswersClick = {
-                if (!it.uid.isNullOrEmpty() &&
-                    !it.name.isNullOrEmpty() &&
-                    !it.url.isNullOrEmpty() &&
-                    !it.coin.isNullOrEmpty() &&
-                    !it.comment.isNullOrEmpty() &&
-                    it.date != null &&
-                    it.time != null
-                ) {
-                    findNavController().navigate(
-                        CommentsFragmentDirections.actionCommentsToAnswers(
-                            it.uid,
-                            it.name,
-                            it.url,
-                            it.coin,
-                            it.comment,
-                            it.date,
-                            it.time
-                        )
+                findNavController().navigate(
+                    CommentsFragmentDirections.actionCommentsToAnswers(
+                        it.uid!!,
+                        it.coin!!,
+                        it.date!!,
+                        it.time!!
                     )
-                }
+                )
             }
 
             adapter.onShowProfileClick = {
@@ -96,28 +84,20 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
                 }
             }
         }
-
         initObservers()
     }
 
     private fun initObservers() = with(binding) {
 
         viewModel.comments.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()) {
+            if ( it != null ) {
                 LinearLayoutManager(requireContext()).apply {
-                    reverseLayout = true
-                    stackFromEnd = true
                     commentRecycler.layoutManager = this
                 }
                 commentRecycler.adapter = adapter
                 adapter.setData(it)
             }
         }
-    }
-
-    private fun sendComment(comment: String) {
-
-        viewModel.postComment(args.coin, comment)
 
         viewModel.result.observe(viewLifecycleOwner) {
             if (it) {
@@ -128,16 +108,7 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
         }
     }
 
-    private fun deleteComment(comment: Comment) {
+    private fun sendComment(comment: String) = viewModel.postComment(args.coin, comment)
 
-        viewModel.deleteComment(comment)
-
-        viewModel.result.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.getComments(args.coin)
-            } else {
-                requireContext().showToast("Yorumunuz eklenemedi")
-            }
-        }
-    }
+    private fun deleteComment(comment: Comment) = viewModel.deleteComment(comment)
 }

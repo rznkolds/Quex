@@ -59,7 +59,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.rk.quex.ui.home.Home"
+        android:name="com.rk.quex.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
@@ -80,6 +80,13 @@
             app:popEnterAnim="@anim/open_component_from_left"
             app:popExitAnim="@anim/close_component_from_right"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
 
     </fragment>
 
@@ -145,19 +152,12 @@
             app:exitAnim="@anim/close_component_from_left"
             app:popEnterAnim="@anim/open_component_from_left"
             app:popExitAnim="@anim/close_component_from_right" />
+
         <argument
             android:name="uid"
             app:argType="string" />
-        <argument android:name="name"
-            app:argType="string" />
-        <argument
-            android:name="url"
-            app:argType="string" />
         <argument
             android:name="coin"
-            app:argType="string" />
-        <argument
-            android:name="comment"
             app:argType="string" />
         <argument
             android:name="date"
@@ -166,6 +166,19 @@
             android:name="time"
             app:argType="integer" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/notification"
+        android:name="com.rk.quex.ui.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notification_to_answers"
+            app:destination="@id/answers"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
     </fragment>
 
 </navigation>

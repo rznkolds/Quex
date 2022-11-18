@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rk.quex.data.model.Favorite
 import com.rk.quex.databinding.FavoriteItemBinding
-import com.rk.quex.utils.FavoriteDiffUtil
+import com.rk.quex.utils.ProfileDiffUtil
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.AdapterHolder>() {
+class ProfileAdapter : RecyclerView.Adapter<ProfileAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Favorite>()
 
@@ -36,7 +36,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.AdapterHolder>() {
 
     fun setData(new_user_list: ArrayList<Favorite>) {
         list.clear()
-        val result = DiffUtil.calculateDiff(FavoriteDiffUtil(list, new_user_list))
+        val result = DiffUtil.calculateDiff(ProfileDiffUtil(list, new_user_list))
         list.addAll(new_user_list)
         result.dispatchUpdatesTo(this)
     }

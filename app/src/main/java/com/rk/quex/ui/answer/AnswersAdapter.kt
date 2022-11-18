@@ -9,7 +9,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.rk.quex.common.setPicture
 import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.AnswerItemBinding
 import com.rk.quex.utils.AnswerDiffUtil
 
@@ -28,7 +27,7 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AdapterHolder>() {
                 answerName.text = answer.name
                 answerText.text = answer.comment
 
-                answer.url?.let {
+                answer.profile?.let {
                     answerPicture.setPicture(it)
                 }
 

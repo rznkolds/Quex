@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.ActivityMainBinding
-import com.rk.quex.databinding.FragmentSignUpBinding
 
 class MainActivity : AppCompatActivity() {
 

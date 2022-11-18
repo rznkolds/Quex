@@ -16,18 +16,16 @@ class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
 
     inner class AdapterHolder(val binding: CoinItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(coin: Coin) {
+        fun bind(coin: Coin) = with(binding) {
 
-            with(binding) {
-                coin.image?.let {
-                    coinPicture.setPicture(it)
-                }
-                coinName.text = coin.name
-                coinPrice.text = coin.current_price
+            coin.picture?.let {
+                coinPicture.setPicture(it)
+            }
+            coinName.text = coin.name
+            coinPrice.text = coin.price
 
-                itemView.setOnClickListener {
-                    onCoinClick(coin)
-                }
+            itemView.setOnClickListener {
+                onCoinClick(coin)
             }
         }
     }

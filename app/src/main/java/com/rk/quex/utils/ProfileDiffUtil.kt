@@ -3,7 +3,7 @@ package com.rk.quex.utils
 import androidx.recyclerview.widget.DiffUtil
 import com.rk.quex.data.model.Favorite
 
-class FavoriteDiffUtil(
+class ProfileDiffUtil(
     private val oldList: ArrayList<Favorite>,
     private val newList: ArrayList<Favorite>
 ) : DiffUtil.Callback() {

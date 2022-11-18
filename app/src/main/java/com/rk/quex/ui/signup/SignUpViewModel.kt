@@ -14,9 +14,13 @@ class SignUpViewModel : ViewModel() {
     val result : LiveData<Boolean>
         get() = _result
 
-    private var _failMessage = MutableLiveData<String>()
-    val failMessage : LiveData<String>
-        get() = _failMessage
+    private var _fail = MutableLiveData<String>()
+    val fail : LiveData<String>
+        get() = _fail
+
+    init {
+        _result = memberRepo.result
+    }
 
     fun register(name: String, description: String, email: String, password: String, picture: Uri?) {
 
@@ -30,11 +34,10 @@ class SignUpViewModel : ViewModel() {
 
         if (isValid && picture != null) {
             memberRepo.register(name, description, email, password, picture)
-            _result = memberRepo.result
         }   else if (picture == null) {
-            _failMessage.value = "Bir resim seçiniz"
+            _fail.value = "Bir resim seçin"
         }   else {
-            _failMessage.value = "Boş alanları doldurunuz"
+            _fail.value = "Boş kısımları belirtin"
         }
     }
 }

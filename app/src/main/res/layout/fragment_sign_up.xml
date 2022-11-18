@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/sign_up_profile"
+        android:id="@+id/picture_profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
@@ -32,6 +32,14 @@
         app:layout_constraintEnd_toEndOf="@+id/welcome_text_to_sign_up"
         app:layout_constraintStart_toStartOf="@+id/welcome_text_to_sign_up"
         app:layout_constraintTop_toBottomOf="@+id/welcome_text_to_sign_up" />
+
+    <ImageView
+        android:id="@+id/picture_add"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/picture_add"
+        app:layout_constraintBottom_toBottomOf="@+id/picture_profile"
+        app:layout_constraintEnd_toEndOf="@+id/picture_profile" />
 
     <EditText
         android:id="@+id/sign_up_name"
@@ -46,9 +54,9 @@
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/sign_up_profile"
-        app:layout_constraintStart_toStartOf="@+id/sign_up_profile"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_profile"
+        app:layout_constraintEnd_toEndOf="@+id/picture_profile"
+        app:layout_constraintStart_toStartOf="@+id/picture_profile"
+        app:layout_constraintTop_toBottomOf="@+id/picture_profile"
         tools:ignore="RtlSymmetry" />
 
     <EditText

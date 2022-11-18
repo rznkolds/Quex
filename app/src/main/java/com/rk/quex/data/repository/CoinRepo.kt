@@ -5,21 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.rk.quex.common.Retrofit
-import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Coin
-import com.rk.quex.data.model.Comment
-import com.rk.quex.data.model.Favorite
+import com.rk.quex.data.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CoinRepo {
 
     val result = MutableLiveData<Boolean>()
     val coins = MutableLiveData<ArrayList<Coin>>()
     val favorites = MutableLiveData<ArrayList<Favorite>>()
+    val notifications = MutableLiveData<ArrayList<Notification>>()
     val comments = MutableLiveData<ArrayList<Comment>>()
     val answers = MutableLiveData<ArrayList<Answer>>()
 
@@ -65,6 +62,40 @@ class CoinRepo {
         })
     }
 
+    // Get and delete current user's notifications
+
+    fun getNotifications() {
+
+        userService.getNotifications(auth.uid.toString()).enqueue(object : Callback<ArrayList<Notification>> {
+
+            override fun onResponse(
+                call: Call<ArrayList<Notification>>,
+                response: Response<ArrayList<Notification>>
+            ) {
+                if (response.isSuccessful) {
+                    notifications.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Notification>>, t: Throwable) {}
+        })
+    }
+
+    fun deleteNotifications() {
+
+        userService.deleteNotifications(auth.uid.toString()).enqueue(object : Callback<Status> {
+
+            override fun onResponse(
+                call: Call<Status>,
+                response: Response<Status>
+            ) {
+                result.value = response.body()?.received
+            }
+
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
+        })
+    }
+
     // Saving and receiving comments
 
     fun getComments(coin: String) {
@@ -77,6 +108,7 @@ class CoinRepo {
             ) {
                 if (response.isSuccessful) {
                     comments.value = response.body()
+                    Log.d("1 :",response.body().toString())
                 }
             }
 
@@ -96,16 +128,16 @@ class CoinRepo {
             time()
         )
 
-        userService.postComment(comment).enqueue(object : Callback<String> {
+        userService.postComment(comment).enqueue(object : Callback<Status> {
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<Status>,
+                response: Response<Status>
             ) {
-                result.value = response.isSuccessful
+                result.value = response.body()?.received
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {}
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
         })
     }
 
@@ -129,16 +161,16 @@ class CoinRepo {
 
     fun deleteComment(comment: Comment) {
 
-        userService.deleteComment(comment).enqueue(object : Callback<String> {
+        userService.deleteComment(comment).enqueue(object : Callback<Status> {
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<Status>,
+                response: Response<Status>
             ) {
-                result.value = response.isSuccessful
+                result.value = response.body()?.received
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {}
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
         })
     }
 
@@ -174,31 +206,31 @@ class CoinRepo {
             time
         )
 
-        userService.postAnswer(answer).enqueue(object : Callback<String> {
+        userService.postAnswer(answer).enqueue(object : Callback<Status> {
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<Status>,
+                response: Response<Status>
             ) {
-                result.value = response.isSuccessful
+                result.value = response.body()?.received
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {}
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
         })
     }
 
     fun deleteAnswer(answer: Answer) {
 
-        userService.deleteAnswer(answer).enqueue(object : Callback<String> {
+        userService.deleteAnswer(answer).enqueue(object : Callback<Status> {
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<Status>,
+                response: Response<Status>
             ) {
-                result.value = response.isSuccessful
+                result.value = response.body()?.received
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {}
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
         })
     }
 }

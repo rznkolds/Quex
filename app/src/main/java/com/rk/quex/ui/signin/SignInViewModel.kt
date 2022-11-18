@@ -13,9 +13,13 @@ class SignInViewModel : ViewModel() {
     val result : LiveData<Boolean>
         get() = _result
 
-    private var _failMessage = MutableLiveData<String>()
-    val failMessage : LiveData<String>
-        get() = _failMessage
+    private var _fail = MutableLiveData<String>()
+    val fail : LiveData<String>
+        get() = _fail
+
+    init {
+        _result = memberRepo.result
+    }
 
     fun login(email: String, password: String) {
 
@@ -27,9 +31,8 @@ class SignInViewModel : ViewModel() {
 
         if (isValid){
             memberRepo.login(email, password)
-            _result = memberRepo.result
         } else {
-            _failMessage.value = "Boş alanları doldurunuz"
+            _fail.value = "Boş alanları doldurunuz"
         }
     }
 }

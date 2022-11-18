@@ -5,13 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.rk.quex.R
 import com.rk.quex.common.setPicture
 import com.rk.quex.common.showToast
@@ -27,12 +24,14 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signUpProfile.setOnClickListener {
+        binding.pictureProfile.setOnClickListener {
 
-            Intent(Intent.ACTION_GET_CONTENT).apply {
-                type = "image/*"
-                register.launch(this)
-            }
+            intent()
+        }
+
+        binding.pictureAdd.setOnClickListener {
+
+            intent()
         }
 
         binding.goHomeFromSignUp.setOnClickListener {
@@ -51,12 +50,10 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         viewModel.result.observe(viewLifecycleOwner) {
             if (it) {
                 this.findNavController().navigate(SignUpFragmentDirections.actionSignUpToHome())
-            } else {
-                requireContext().showToast("Kullanıcı verileri eksik")
             }
         }
 
-        viewModel.failMessage.observe(viewLifecycleOwner) {
+        viewModel.fail.observe(viewLifecycleOwner) {
             requireContext().showToast(it)
         }
     }
@@ -73,10 +70,19 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         }
     }
 
+    private fun intent() {
+
+        Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+            register.launch(this)
+        }
+    }
+
     private val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                picture = it.data?.data
-                binding.signUpProfile.setPicture(it.data?.data.toString())
-            }
+        if (it.resultCode == Activity.RESULT_OK) {
+            picture = it.data?.data
+            binding.pictureProfile.setPicture(it.data?.data.toString())
+            binding.pictureAdd.visibility = View.INVISIBLE
+        }
     }
 }

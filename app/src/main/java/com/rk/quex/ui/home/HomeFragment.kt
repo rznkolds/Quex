@@ -13,7 +13,7 @@ import com.rk.quex.common.setPicture
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentHomeBinding
 
-class Home : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
@@ -24,10 +24,10 @@ class Home : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.onCoinClick = {
-            if (it.name != null && it.image != null && it.current_price != null) {
+            if (it.name != null && it.picture != null && it.price != null) {
                 findNavController().navigate(
-                    HomeDirections.actionHomeToComments(
-                        it.name, it.image, it.current_price
+                    HomeFragmentDirections.actionHomeToComments(
+                        it.name, it.picture, it.price
                     )
                 )
             }
@@ -35,27 +35,33 @@ class Home : Fragment(R.layout.fragment_home) {
 
         binding.homeProfile.setOnClickListener {
             auth?.uid?.let {
-                findNavController().navigate(HomeDirections.actionHomeToProfile(it))
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeToProfile(it)
+                )
             }
+        }
+
+        binding.notificationScreen.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeToNotification()
+            )
         }
 
         initObservers()
     }
 
-    private fun initObservers() {
+    private fun initObservers() = with(binding) {
 
-        with(binding) {
-            viewModel.coins.observe(viewLifecycleOwner) {
-                if (!it.isNullOrEmpty()) {
-                    coinRecycler.layoutManager = LinearLayoutManager(requireContext())
-                    coinRecycler.adapter = adapter
-                    adapter.setData(it)
-                }
+        viewModel.coins.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                coinRecycler.layoutManager = LinearLayoutManager(requireContext())
+                coinRecycler.adapter = adapter
+                adapter.setData(it)
             }
+        }
 
-            viewModel.picture.observe(viewLifecycleOwner) {
-                homeProfile.setPicture(it.toString())
-            }
+        viewModel.picture.observe(viewLifecycleOwner) {
+            homeProfile.setPicture(it.toString())
         }
     }
 }

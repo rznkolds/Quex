@@ -3,15 +3,11 @@ package com.rk.quex.ui.comment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.rk.quex.common.setPicture
-import com.rk.quex.data.model.Coin
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.CommentItemBinding
 import com.rk.quex.utils.CommentDiffUtil
@@ -38,7 +34,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.AdapterHolder>() {
                 commentPicture.showProfile(comment)
                 commentName.showProfile(comment)
 
-                comment.url?.let {
+                comment.profile?.let {
                     commentPicture.setPicture(it)
                 }
 

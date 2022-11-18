@@ -1,7 +1,6 @@
 package com.rk.quex.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.rk.quex.data.model.Coin
 import com.rk.quex.data.model.Comment
 
 class CommentDiffUtil(

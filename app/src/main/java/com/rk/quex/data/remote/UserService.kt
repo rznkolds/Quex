@@ -1,54 +1,56 @@
 package com.rk.quex.data.remote
 
-import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Comment
-import com.rk.quex.data.model.Favorite
-import com.rk.quex.data.model.User
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
+import com.rk.quex.data.model.*
 import retrofit2.Call
 import retrofit2.http.*
-
 
 interface UserService {
 
     // Get and post user informations
 
-    @GET("info")
+    @GET("user/info.php")
     fun getUser(@Query("uid") uid: String): Call<User>
 
-    @POST("save")
-    fun postUser(@Body user: User): Call<String>
+    @POST("user/save.php")
+    fun postUser(@Body user: User): Call<Status>
 
     // Get user favorite coins
 
-    @GET("coin/list")
+    @GET("favorite/list.php")
     fun getFavoriteCoins(@Query("uid") uid: String): Call<ArrayList<Favorite>>
+
+    // Get and delete user notifications
+
+    @GET("notification/list.php")
+    fun getNotifications(@Query("uid") uid: String): Call<ArrayList<Notification>>
+
+    @HTTP(method = "DELETE", path = "notification/delete.php", hasBody = true)
+    fun deleteNotifications(@Query("uid") uid: String): Call<Status>
 
     // Get, post and delete user comments
 
-    @GET("comment/list")
+    @GET("comment/list.php")
     fun getComments(@Query("coin") coin: String): Call<ArrayList<Comment>>
 
-    @POST("comment/save")
-    fun postComment(@Body comment: Comment): Call<String>
+    @POST("comment/save.php")
+    fun postComment(@Body comment: Comment): Call<Status>
 
-    @HTTP(method = "DELETE", path = "comment/delete", hasBody = true)
-    fun deleteComment(@Body comment: Comment): Call<String>
+    @HTTP(method = "DELETE", path = "comment/delete.php", hasBody = true)
+    fun deleteComment(@Body comment: Comment): Call<Status>
 
     // Get, post and delete user answers
 
-    @GET("answer/list")
+    @GET("answer/list.php")
     fun getAnswers(
         @Query("coin") coin: String,
-        @Query("above_uid") aboveUid: String,
-        @Query("top_date") top_date: Int,
-        @Query("top_time") top_time: Int
+        @Query("top") aboveUid: String,
+        @Query("date") date: Int,
+        @Query("time") time: Int
     ): Call<ArrayList<Answer>>
 
-    @POST("answer/save")
-    fun postAnswer(@Body answer: Answer): Call<String>
+    @POST("answer/save.php")
+    fun postAnswer(@Body answer: Answer): Call<Status>
 
-    @HTTP(method = "DELETE", path = "answer/delete", hasBody = true)
-    fun deleteAnswer(@Body answer: Answer): Call<String>
+    @HTTP(method = "DELETE", path = "answer/delete.php", hasBody = true)
+    fun deleteAnswer(@Body answer: Answer): Call<Status>
 }
