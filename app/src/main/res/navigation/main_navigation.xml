@@ -7,7 +7,7 @@
     app:startDestination="@id/sign_in">
 
     <fragment
-        android:id="@+id/go_home_from_sign_up"
+        android:id="@+id/sign_up"
         android:name="com.rk.quex.ui.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
@@ -39,7 +39,7 @@
 
         <action
             android:id="@+id/action_sign_in_to_sign_up"
-            app:destination="@id/go_home_from_sign_up"
+            app:destination="@id/sign_up"
             app:enterAnim="@anim/open_component_from_right"
             app:exitAnim="@anim/close_component_from_left"
             app:launchSingleTop="false"
@@ -137,6 +137,10 @@
             android:name="price"
             app:argType="string" />
 
+        <action
+            android:id="@+id/action_comments_to_updateFragment"
+            app:destination="@id/update" />
+
     </fragment>
 
     <fragment
@@ -156,22 +160,31 @@
         <argument
             android:name="uid"
             app:argType="string" />
+
         <argument
             android:name="coin"
             app:argType="string" />
+
         <argument
             android:name="date"
             app:argType="integer" />
+
         <argument
             android:name="time"
             app:argType="integer" />
 
+        <action
+            android:id="@+id/action_answers_to_updateFragment"
+            app:destination="@id/update" />
+
     </fragment>
+
     <fragment
         android:id="@+id/notification"
         android:name="com.rk.quex.ui.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" >
+
         <action
             android:id="@+id/action_notification_to_answers"
             app:destination="@id/answers"
@@ -179,6 +192,28 @@
             app:exitAnim="@anim/close_component_from_left"
             app:popEnterAnim="@anim/open_component_from_left"
             app:popExitAnim="@anim/close_component_from_right" />
+
     </fragment>
+
+    <dialog
+        android:id="@+id/update"
+        android:name="com.rk.quex.ui.update.UpdateFragment"
+        android:label="fragment_update">
+
+        <argument
+            android:name="model"
+            app:argType="string" />
+
+        <argument
+            android:name="comment"
+            app:argType="com.rk.quex.data.model.Comment"
+            app:nullable="true" />
+
+        <argument
+            android:name="answer"
+            app:argType="com.rk.quex.data.model.Answer"
+            app:nullable="true" />
+
+    </dialog>
 
 </navigation>

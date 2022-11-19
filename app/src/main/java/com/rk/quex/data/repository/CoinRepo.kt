@@ -66,19 +66,20 @@ class CoinRepo {
 
     fun getNotifications() {
 
-        userService.getNotifications(auth.uid.toString()).enqueue(object : Callback<ArrayList<Notification>> {
+        userService.getNotifications(auth.uid.toString())
+            .enqueue(object : Callback<ArrayList<Notification>> {
 
-            override fun onResponse(
-                call: Call<ArrayList<Notification>>,
-                response: Response<ArrayList<Notification>>
-            ) {
-                if (response.isSuccessful) {
-                    notifications.value = response.body()
+                override fun onResponse(
+                    call: Call<ArrayList<Notification>>,
+                    response: Response<ArrayList<Notification>>
+                ) {
+                    if (response.isSuccessful) {
+                        notifications.value = response.body()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ArrayList<Notification>>, t: Throwable) {}
-        })
+                override fun onFailure(call: Call<ArrayList<Notification>>, t: Throwable) {}
+            })
     }
 
     fun deleteNotifications() {
@@ -108,7 +109,7 @@ class CoinRepo {
             ) {
                 if (response.isSuccessful) {
                     comments.value = response.body()
-                    Log.d("1 :",response.body().toString())
+                    Log.d("1 :", response.body().toString())
                 }
             }
 
@@ -159,6 +160,31 @@ class CoinRepo {
         return time.toInt()
     }
 
+    fun putComment(text: String, cmt: Comment) {
+
+        val comment = Comment(
+            cmt.uid,
+            "",
+            "",
+            cmt.coin,
+            text,
+            cmt.date,
+            cmt.time
+        )
+
+        userService.putComment(comment).enqueue(object : Callback<Status> {
+
+            override fun onResponse(
+                call: Call<Status>,
+                response: Response<Status>
+            ) {
+                result.value = response.body()?.received
+            }
+
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
+        })
+    }
+
     fun deleteComment(comment: Comment) {
 
         userService.deleteComment(comment).enqueue(object : Callback<Status> {
@@ -207,6 +233,32 @@ class CoinRepo {
         )
 
         userService.postAnswer(answer).enqueue(object : Callback<Status> {
+
+            override fun onResponse(
+                call: Call<Status>,
+                response: Response<Status>
+            ) {
+                result.value = response.body()?.received
+            }
+
+            override fun onFailure(call: Call<Status>, t: Throwable) {}
+        })
+    }
+
+    fun putAnswer(text: String, ans: Answer) {
+
+        val answer = Answer(
+            ans.uid,
+            "",
+            ans.top,
+            "",
+            ans.coin,
+            text,
+            ans.date,
+            ans.time
+        )
+
+        userService.putAnswer(answer).enqueue(object : Callback<Status> {
 
             override fun onResponse(
                 call: Call<Status>,

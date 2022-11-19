@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +14,9 @@ import com.rk.quex.R
 import com.rk.quex.common.endsWith
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Answer
+import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentAnswersBinding
+import com.rk.quex.ui.comment.CommentsFragmentDirections
 
 class AnswersFragment : Fragment(R.layout.fragment_answers) {
 
@@ -26,21 +29,12 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            adapter.onAnswerClick = {
+            adapter.onShowProfileClick = {
                 findNavController().navigate(AnswersFragmentDirections.actionAnswersToProfile(it))
             }
 
-            adapter.onDeleteAnswerClick = {
-                it.comment?.let { _ ->
-                    AlertDialog.Builder(requireContext()).apply {
-                        setMessage("Yanıtın silinsin mi ?")
-                        setPositiveButton(R.string.yes) { _, _ ->
-                            deleteAnswer(it)
-                        }
-                        create()
-                        show()
-                    }
-                }
+            adapter.onShowMenuClick = { view: View, answer: Answer ->
+                showMenu(view,answer)
             }
 
             answerEditText.setOnEditorActionListener { v, actionId, _ ->
@@ -91,4 +85,30 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
     private fun sendAnswer(comment: String) = viewModel.postAnswer(args.uid, args.coin, comment, args.date, args.time)
 
     private fun deleteAnswer(answer: Answer) = viewModel.deleteAnswer(answer)
+
+    private fun showMenu(view: View, answer: Answer) {
+
+        val menu = PopupMenu(this.requireContext(),view).apply {
+            this.inflate(R.menu.external_menu)
+            this.show()
+        }
+
+        menu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.update_item -> {
+                    findNavController().navigate(
+                        AnswersFragmentDirections.actionAnswersToUpdateFragment (
+                            "answer" ,
+                            null,
+                            answer
+                        )
+                    )
+                }
+                R.id.delete_item -> {
+                    deleteAnswer(answer)
+                }
+            }
+            false
+        }
+    }
 }

@@ -21,10 +21,10 @@
 
     <View
         android:id="@+id/answer_divider_two"
-        android:layout_width="200dp"
-        android:layout_height="2dp"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="?android:attr/listDivider"
+        android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer_title" />
@@ -33,7 +33,6 @@
         android:id="@+id/answer_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/answer_edit_text"
         app:layout_constraintEnd_toEndOf="parent"

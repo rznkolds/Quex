@@ -1,9 +1,9 @@
 package com.rk.quex.ui.comment
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,6 +16,7 @@ import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentCommentsBinding
+
 
 class CommentsFragment : Fragment(R.layout.fragment_comments) {
 
@@ -55,17 +56,8 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
                 }
             }
 
-            adapter.onDeleteCommentClick = {
-                it.comment?.let { _ ->
-                    AlertDialog.Builder(requireContext()).apply {
-                        setMessage("Yorumun silinsin mi ?")
-                        setPositiveButton(R.string.yes) { dialog, id ->
-                            deleteComment(it)
-                        }
-                        create()
-                        show()
-                    }
-                }
+            adapter.onShowMenuClick = { view: View, comment: Comment ->
+                showMenu(view,comment)
             }
 
             commentEditText.setOnEditorActionListener { v, actionId, _ ->
@@ -73,7 +65,7 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
                     EditorInfo.IME_ACTION_SEND -> {
                         if (commentEditText.text.toString().isNotBlank()) {
                             if (commentEditText.endsWith()) {
-                                sendComment((v.text.toString() + "-YTD."))
+                                sendComment((v.text.toString() + " -YTD."))
                                 commentEditText.text.clear()
                             }
                         }
@@ -111,4 +103,28 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
     private fun sendComment(comment: String) = viewModel.postComment(args.coin, comment)
 
     private fun deleteComment(comment: Comment) = viewModel.deleteComment(comment)
+
+    private fun showMenu(view: View, comment: Comment) {
+
+        val menu = PopupMenu(this.requireContext(),view).apply {
+            this.inflate(R.menu.external_menu)
+            this.show()
+        }
+
+        menu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.update_item -> {
+                    findNavController().navigate(
+                        CommentsFragmentDirections.actionCommentsToUpdateFragment (
+                            "comment" , comment,null
+                        )
+                    )
+                }
+                R.id.delete_item -> {
+                    deleteComment(comment)
+                }
+            }
+            false
+        }
+    }
 }

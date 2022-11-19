@@ -16,8 +16,8 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AdapterHolder>() {
 
     private val auth by lazy { Firebase.auth }
     private var list = ArrayList<Answer>()
-    var onAnswerClick: (String) -> Unit = {}
-    var onDeleteAnswerClick: (Answer) -> Unit = {}
+    var onShowProfileClick: (String) -> Unit = {}
+    var onShowMenuClick: (View, Answer) -> Unit = { view: View, answer: Answer -> }
 
     inner class AdapterHolder(val binding: AnswerItemBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -32,16 +32,16 @@ class AnswersAdapter : RecyclerView.Adapter<AnswersAdapter.AdapterHolder>() {
                 }
 
                 if ( answer.uid == auth.uid.toString() ) {
-                    answerDelete.setOnClickListener {
-                        onDeleteAnswerClick(answer)
+                    answerMenu.setOnClickListener {
+                        onShowMenuClick(it,answer)
                     }
                 }else{
-                    answerDelete.visibility = View.INVISIBLE
+                    answerMenu.visibility = View.GONE
                 }
 
                 itemView.setOnClickListener {
                     answer.uid?.let { uid ->
-                        onAnswerClick(uid)
+                        onShowProfileClick(uid)
                     }
                 }
             }

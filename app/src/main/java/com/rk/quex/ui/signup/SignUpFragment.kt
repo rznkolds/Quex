@@ -34,7 +34,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
             intent()
         }
 
-        binding.goHomeFromSignUp.setOnClickListener {
+        binding.signUp.setOnClickListener {
             register()
         }
 

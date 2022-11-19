@@ -18,7 +18,7 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.AdapterHolder>() {
     private var list = ArrayList<Comment>()
     var onShowAnswersClick: (Comment) -> Unit = {}
     var onShowProfileClick: (Comment) -> Unit = {}
-    var onDeleteCommentClick: (Comment) -> Unit = {}
+    var onShowMenuClick: (View,Comment) -> Unit = { view: View, comment: Comment -> }
 
     inner class AdapterHolder(val binding: CommentItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -39,11 +39,11 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.AdapterHolder>() {
                 }
 
                 if ( comment.uid == auth.uid.toString() ) {
-                    commentDelete.setOnClickListener {
-                        onDeleteCommentClick(comment)
+                    commentMenu.setOnClickListener {
+                        onShowMenuClick(it,comment)
                     }
                 }else{
-                    commentDelete.visibility = View.INVISIBLE
+                    commentMenu.visibility = View.GONE
                 }
             }
         }

@@ -35,6 +35,9 @@ interface UserService {
     @POST("comment/save.php")
     fun postComment(@Body comment: Comment): Call<Status>
 
+    @PUT("comment/update.php")
+    fun putComment(@Body comment: Comment): Call<Status>
+
     @HTTP(method = "DELETE", path = "comment/delete.php", hasBody = true)
     fun deleteComment(@Body comment: Comment): Call<Status>
 
@@ -50,6 +53,9 @@ interface UserService {
 
     @POST("answer/save.php")
     fun postAnswer(@Body answer: Answer): Call<Status>
+
+    @PUT("answer/update.php")
+    fun putAnswer(@Body answer: Answer): Call<Status>
 
     @HTTP(method = "DELETE", path = "answer/delete.php", hasBody = true)
     fun deleteAnswer(@Body answer: Answer): Call<Status>

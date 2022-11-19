@@ -115,7 +115,7 @@
         tools:ignore="RtlSymmetry,TextFields" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_home_from_sign_up"
+        android:id="@+id/sign_up"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
@@ -136,8 +136,8 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/go_home_from_sign_up"
-        app:layout_constraintStart_toStartOf="@+id/go_home_from_sign_up"
-        app:layout_constraintTop_toBottomOf="@+id/go_home_from_sign_up" />
+        app:layout_constraintEnd_toEndOf="@+id/sign_up"
+        app:layout_constraintStart_toStartOf="@+id/sign_up"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

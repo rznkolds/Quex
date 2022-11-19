@@ -11,4 +11,10 @@
     <string name="enter">Do you have an account ? Then login</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
+    <string name="update">Güncelle</string>
+    <string name="delete">Sil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_btn">Update</string>
+    <string name="update_text">Text</string>
 </resources>
