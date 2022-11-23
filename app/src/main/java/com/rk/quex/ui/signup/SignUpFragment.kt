@@ -18,12 +18,11 @@ import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentSignUpBinding
 
-
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     private val binding by viewBinding(FragmentSignUpBinding::bind)
     private val viewModel: SignUpViewModel by viewModels()
-    private var dialog : AlertDialog? = null
+    private lateinit var dialog : AlertDialog
     private var picture: Uri? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,14 +38,14 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
         binding.signUp.setOnClickListener {
 
-            val builder = AlertDialog.Builder(this.requireContext()).apply {
-                setView(layoutInflater.inflate(R.layout.custom_alert_dialog, null))
-                setCancelable(false)
+            val builder = AlertDialog.Builder( this.requireContext() ).apply {
+                this.setView(layoutInflater.inflate(R.layout.custom_alert_dialog, null))
+                this.setCancelable(false)
             }
 
             dialog = builder.create().also {
                 it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                it.window?.setLayout(500, 500)
+                it.window?.setLayout(200,200)
                 it.show()
             }
 
@@ -64,17 +63,17 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
         viewModel.result.observe(viewLifecycleOwner) {
             if (it) {
-                dialog?.dismiss()
+                dialog.dismiss()
                 this.findNavController().navigate(SignUpFragmentDirections.actionSignUpToHome())
             } else {
-                dialog?.dismiss()
+                dialog.dismiss()
                 requireContext().showToast("E-mail zaten mevcut")
             }
         }
 
         viewModel.fail.observe(viewLifecycleOwner) {
+            dialog.dismiss()
             requireContext().showToast(it)
-            dialog?.dismiss()
         }
     }
 

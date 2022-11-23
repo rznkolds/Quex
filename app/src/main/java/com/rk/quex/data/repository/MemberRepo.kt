@@ -89,4 +89,8 @@ class MemberRepo {
             override fun onFailure(call: Call<User>, t: Throwable) {}
         })
     }
+
+    fun outProfile(){
+        auth.signOut()
+    }
 }

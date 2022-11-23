@@ -99,6 +99,10 @@
         <argument
             android:name="uid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_profile_to_sign_in"
+            app:destination="@id/sign_in"
+            app:popUpTo="@id/main_navigation" />
 
     </fragment>
 

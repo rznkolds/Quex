@@ -93,4 +93,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_divider_two" />
 
+    <ImageView
+        android:id="@+id/out_btn"
+        android:layout_width="32dp"
+        android:layout_height="33dp"
+        android:padding="8dp"
+        android:src="@drawable/out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

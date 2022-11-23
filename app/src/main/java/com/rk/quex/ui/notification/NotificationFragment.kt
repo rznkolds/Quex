@@ -42,7 +42,6 @@ class NotificationFragment : Fragment(R.layout.fragment_notification) {
         viewModel.result.observe(viewLifecycleOwner) {
             if (it) {
                 viewModel.getNotifications()
-
                 requireContext().showToast("Bildirimler Silindi")
             } else {
                 requireContext().showToast("Bildirim bulunamadı")
