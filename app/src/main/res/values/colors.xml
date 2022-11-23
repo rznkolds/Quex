@@ -12,5 +12,6 @@
     <color name="green">#46db66</color>
     <color name="gray">#6A6A6A</color>
     <color name="idea_color">#717171</color>
+    <color name="dark_background">#1A2732</color>
 
 </resources>

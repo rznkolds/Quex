@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3E3E3E">
+        android:background="@color/dark_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/coin_picture"
@@ -39,17 +39,15 @@
 
         <TextView
             android:id="@+id/coin_price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:gravity="start"
-            android:textAlignment="viewStart"
+            android:autoSizeTextType="uniform"
+            android:gravity="left"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/coin_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/coin_name"
+            app:layout_constraintStart_toEndOf="@+id/coin_divider_one"
             app:layout_constraintTop_toTopOf="@+id/coin_picture" />
 
         <TextView

@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3E3E3E">
+        android:background="@color/dark_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/notification_picture"
