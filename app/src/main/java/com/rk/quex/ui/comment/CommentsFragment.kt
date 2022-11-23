@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,7 +18,6 @@ import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentCommentsBinding
 
-
 class CommentsFragment : Fragment(R.layout.fragment_comments) {
 
     private val binding by viewBinding(FragmentCommentsBinding::bind)
@@ -29,6 +29,7 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+
             args.let {
                 sampleCoinPicture.setPicture(it.picture)
                 sampleCoinName.text = it.coin
@@ -76,6 +77,12 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
                 }
             }
         }
+
+        this.setFragmentResultListener("sheet") { _, _ ->
+
+            viewModel.getComments(args.coin)
+        }
+
         initObservers()
     }
 
@@ -83,9 +90,6 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
 
         viewModel.comments.observe(viewLifecycleOwner) {
             if ( it != null ) {
-                LinearLayoutManager(requireContext()).apply {
-                    commentRecycler.layoutManager = this
-                }
                 commentRecycler.adapter = adapter
                 adapter.setData(it)
             }

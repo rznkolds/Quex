@@ -2,10 +2,12 @@ package com.rk.quex.ui.update
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rk.quex.R
+import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Answer
 import com.rk.quex.data.model.Comment
@@ -26,15 +28,27 @@ class UpdateFragment : BottomSheetDialogFragment(R.layout.fragment_update) {
                     args.comment?.let {
                         val text = updateEditText.text.toString() + " -YTD."
                         updateComment(text, it)
-                        this@UpdateFragment.dismiss()
                     }
                 } else {
                     args.answer?.let {
                         val text = updateEditText.text.toString() + " -YTD."
                         updateAnswer(text, it)
-                        this@UpdateFragment.dismiss()
                     }
                 }
+            }
+        }
+
+        initObservers()
+    }
+
+    private fun initObservers() {
+
+        viewModel.result.observe(viewLifecycleOwner) {
+            if (it) {
+                setFragmentResult("sheet", Bundle())
+                this.dismiss()
+            } else {
+                requireContext().showToast("Yorum düzeltilemedi")
             }
         }
     }

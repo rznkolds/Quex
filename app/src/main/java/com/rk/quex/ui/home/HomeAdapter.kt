@@ -9,7 +9,7 @@ import com.rk.quex.data.model.Coin
 import com.rk.quex.databinding.CoinItemBinding
 import com.rk.quex.utils.CoinDiffUtil
 
-class CoinAdapter : RecyclerView.Adapter<CoinAdapter.AdapterHolder>() {
+class HomeAdapter : RecyclerView.Adapter<HomeAdapter.AdapterHolder>() {
 
     private var list = ArrayList<Coin>()
     var onCoinClick: (Coin) -> Unit = {}

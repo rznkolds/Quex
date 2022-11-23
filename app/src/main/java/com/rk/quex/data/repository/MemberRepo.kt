@@ -33,26 +33,31 @@ class MemberRepo {
 
     fun register(name: String, description: String, email: String, password: String, picture: Uri) {
 
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { it ->
 
-            cloud.child(auth.currentUser?.uid.toString()).putFile(picture).addOnSuccessListener {
+            if (it.isSuccessful){
 
-                it.metadata?.reference?.downloadUrl?.addOnSuccessListener { p ->
+                cloud.child(auth.currentUser?.uid.toString()).putFile(picture).addOnSuccessListener {
 
-                    val user = User(auth.currentUser?.uid.toString(), name, description, p.toString())
+                    it.metadata?.reference?.downloadUrl?.addOnSuccessListener { p ->
 
-                    userService.postUser(user).enqueue(object : Callback<Status> {
+                        val user = User(auth.currentUser?.uid.toString(), name, description, p.toString())
 
-                        override fun onResponse(
-                            call: Call<Status>,
-                            response: Response<Status>
-                        ) {
-                            result.value = response.body()?.received
-                        }
+                        userService.postUser(user).enqueue(object : Callback<Status> {
 
-                        override fun onFailure(call: Call<Status>, t: Throwable) {}
-                    })
+                            override fun onResponse(
+                                call: Call<Status>,
+                                response: Response<Status>
+                            ) {
+                                result.value = response.body()?.received
+                            }
+
+                            override fun onFailure(call: Call<Status>, t: Throwable) {}
+                        })
+                    }
                 }
+            } else {
+                result.value = false
             }
         }
     }

@@ -17,7 +17,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
-    private val adapter by lazy { CoinAdapter() }
+    private val adapter by lazy { HomeAdapter() }
     private val auth by lazy { Firebase.auth.currentUser }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +54,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.coins.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                coinRecycler.layoutManager = LinearLayoutManager(requireContext())
                 coinRecycler.adapter = adapter
                 adapter.setData(it)
             }

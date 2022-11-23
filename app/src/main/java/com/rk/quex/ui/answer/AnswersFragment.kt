@@ -6,6 +6,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -53,6 +54,10 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
             }
         }
 
+        this.setFragmentResultListener("sheet") { _, _ ->
+            viewModel.getAnswers(args.uid, args.coin, args.date, args.time)
+        }
+
         initObservers()
     }
 
@@ -60,16 +65,6 @@ class AnswersFragment : Fragment(R.layout.fragment_answers) {
 
         viewModel.answers.observe(viewLifecycleOwner) {
             if ( it != null ) {
-                if (it.size <= 8) {
-                    LinearLayoutManager(requireContext()).apply {
-                        answerRecycler.layoutManager = this
-                    }
-                } else {
-                    LinearLayoutManager(requireContext()).apply {
-                        stackFromEnd = true
-                        answerRecycler.layoutManager = this
-                    }
-                }
                 answerRecycler.adapter = adapter
                 adapter.setData(it)
             }

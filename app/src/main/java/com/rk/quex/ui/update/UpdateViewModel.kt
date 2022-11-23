@@ -1,5 +1,7 @@
 package com.rk.quex.ui.update
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Answer
 import com.rk.quex.data.model.Comment
@@ -9,11 +11,15 @@ class UpdateViewModel : ViewModel() {
 
     private var coinRepo = CoinRepo()
 
-    fun putComment(text: String, comment: Comment) {
-        coinRepo.putComment(text, comment)
+    private var _result = MutableLiveData<Boolean>()
+    val result: LiveData<Boolean>
+        get() = _result
+
+    init {
+        _result = coinRepo.result
     }
 
-    fun putAnswer(text: String, answer: Answer){
-        coinRepo.putAnswer(text, answer)
-    }
+    fun putComment(text: String, comment: Comment) = coinRepo.putComment(text, comment)
+
+    fun putAnswer(text: String, answer: Answer) = coinRepo.putAnswer(text, answer)
 }
