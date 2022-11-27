@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- SIGN IN -->
+    <string name="mail">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">CONNEXION</string>
+    <string name="sign_up_text" >Vous n\\\'avez pas de compte \? Alors inscrivez-vous</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">ACCUEILLIR</string>
+    <string name="account_name">Nom de profil</string>
+    <string name="account_description">Description du profil</string>
+    <string name="create">CRÉER</string>
+    <string name="sign_in_text">Avez-vous un compte \? Connectez-vous ensuite</string>
+
+    <!-- HOME -->
+    <string name="profile">Profil</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">Supprimer tout</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">Favoris</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">commentaires</string>
+    <string name="show">Montrez les réponses</string>
+    <string name="write_comment">Rédiger un commentaire</string>
+
+    <!-- ANSWER -->
+    <string name="answers">Réponses</string>
+    <string name="write_answer">Rédiger la réponse</string>
+
+    <!-- Update -->
+    <string name="update_text">Texte</string>
+
+    <!-- Menu -->
+    <string name="update">Mise à jour</string>
+    <string name="delete">Effacer</string>
+</resources>

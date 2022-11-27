@@ -1,0 +1,39 @@
+<resources>
+    <!-- SIGN IN -->
+    <string name="mail">E-posta</string>
+    <string name="password">Şifre</string>
+    <string name="login">GİRİŞ YAP</string>
+    <string name="sign_up_text">Hesabınız yok mu\? O halde kayıt ol</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">HOŞGELDİN</string>
+    <string name="account_name">Profil ismi</string>
+    <string name="account_description">Profil açıklaması</string>
+    <string name="create">OLUŞTUR</string>
+    <string name="sign_in_text">Hesabın var mı \? O halde giriş yap</string>
+
+    <!-- HOME -->
+    <string name="profile">Profil</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">Hepsini sil</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">Favoriler</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">Yorumlar</string>
+    <string name="show">Cevapları göster</string>
+    <string name="write_comment">Yorum yaz</string>
+
+    <!-- ANSWER -->
+    <string name="answers">Yanıtlar</string>
+    <string name="write_answer">Cevap yaz</string>
+
+    <!-- Update -->
+    <string name="update_text">Metin</string>
+
+    <!-- Menu -->
+    <string name="update">Güncelle</string>
+    <string name="delete">Sil</string>
+</resources>

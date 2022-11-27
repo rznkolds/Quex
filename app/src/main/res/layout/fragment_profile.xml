@@ -69,12 +69,12 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_description" />
 
     <TextView
-        android:id="@+id/profile_favorite_text"
+        android:id="@+id/profile_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="18dp"
-        android:text="Favorites"
+        android:text="@string/favorites"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/favorites_recycler"

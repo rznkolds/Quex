@@ -1,0 +1,39 @@
+<resources>
+    <!-- SIGN IN -->
+    <string name="mail">ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ</string>
+    <string name="password">Κωδικός πρόσβασης</string>
+    <string name="login">ΣΥΝΔΕΣΗ</string>
+    <string name="sign_up_text">Δεν έχετε λογαριασμό; Στη συνέχεια εγγραφείτε</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">ΚΑΛΩΣ ΗΡΘΑΤΕ</string>
+    <string name="account_name">Ονομα προφίλ</string>
+    <string name="account_description">Περιγραφή προφίλ</string>
+    <string name="create">ΔΗΜΙΟΥΡΓΩ</string>
+    <string name="sign_in_text">Εχετε λογαριασμό \? Στη συνέχεια, συνδεθείτε</string>
+
+    <!-- HOME -->
+    <string name="profile">Προφίλ</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">Διαγραφή όλων</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">Αγαπημένα</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">Σχόλια</string>
+    <string name="show">Εμφάνιση απαντήσεων</string>
+    <string name="write_comment">Γράψτε σχόλιο</string>
+
+    <!-- ANSWER -->
+    <string name="answers">Απαντήσεις</string>
+    <string name="write_answer">Γράψε απάντηση</string>
+
+    <!-- Update -->
+    <string name="update_text">Κείμενο</string>
+
+    <!-- Menu -->
+    <string name="update">Εκσυγχρονίζω</string>
+    <string name="delete">Διαγράφω</string>
+</resources>

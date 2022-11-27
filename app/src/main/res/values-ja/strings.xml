@@ -1,0 +1,39 @@
+<resources>
+    <!-- SIGN IN -->
+    <string name="mail">Eメール</string>
+    <string name="password">パスワード</string>
+    <string name="login">ログインする</string>
+    <string name="sign_up_text">アカウントを持っていませんか\?次に、登録します</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">ようこそ</string>
+    <string name="account_name">プロファイル名</string>
+    <string name="account_description">プロファイルの説明</string>
+    <string name="create">作成</string>
+    <string name="sign_in_text">アカウントをお持ちですか？次にログイン</string>
+
+    <!-- HOME -->
+    <string name="profile">プロフィール</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">すべて削除</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">お気に入り</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">コメント</string>
+    <string name="show">回答を表示</string>
+    <string name="write_comment">コメントを書く</string>
+
+    <!-- ANSWER -->
+    <string name="answers">回答</string>
+    <string name="write_answer">答えを書く</string>
+
+    <!-- Update -->
+    <string name="update_text">文章</string>
+
+    <!-- Menu -->
+    <string name="update">アップデート</string>
+    <string name="delete">消去</string>
+</resources>

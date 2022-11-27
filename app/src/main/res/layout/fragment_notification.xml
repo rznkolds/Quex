@@ -13,7 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/enter_button"
-        android:text="Hepsini Sil"
+        android:text="@string/delete_all"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/notification_recycler"
         app:layout_constraintTop_toTopOf="parent" />

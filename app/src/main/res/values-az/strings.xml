@@ -1,0 +1,39 @@
+<resources>
+    <!-- SIGN IN -->
+    <string name="mail">E-poçt</string>
+    <string name="password">parol</string>
+    <string name="login">DAXİL OL</string>
+    <string name="sign_up_text">Hesabınız yoxdur\? Sonra qeydiyyatdan keçin</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">Xoş gəlmisiniz</string>
+    <string name="account_name">İstifadəçi adı</string>
+    <string name="account_description">Profil təsviri</string>
+    <string name="create">YARAT</string>
+    <string name="sign_in_text">Hesabınız varmı\? Sonra daxil olun</string>
+
+    <!-- HOME -->
+    <string name="profile">Profil</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">Hamısını silin</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">Sevimlilər</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">Şərhlər</string>
+    <string name="show">Cavabları göstərin</string>
+    <string name="write_comment">Şərh yazın</string>
+
+    <!-- ANSWER -->
+    <string name="answers">Cavablar</string>
+    <string name="write_answer">Cavab yaz</string>
+
+    <!-- Update -->
+    <string name="update_text">Mətn</string>
+
+    <!-- Menu -->
+    <string name="update">Yeniləyin</string>
+    <string name="delete">Sil</string>
+</resources>

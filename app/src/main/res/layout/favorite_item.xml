@@ -8,12 +8,12 @@
     android:layout_marginRight="5dp"
     android:layout_marginBottom="3dp"
     android:translationZ="1dp"
+    app:cardBackgroundColor="@color/dark_background"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/dark_background">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/favorite_name"

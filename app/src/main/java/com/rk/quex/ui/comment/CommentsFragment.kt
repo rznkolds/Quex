@@ -9,7 +9,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.rk.quex.R
 import com.rk.quex.common.endsWith
 import com.rk.quex.common.setPicture
@@ -96,10 +95,12 @@ class CommentsFragment : Fragment(R.layout.fragment_comments) {
         }
 
         viewModel.result.observe(viewLifecycleOwner) {
-            if (it) {
-                viewModel.getComments(args.coin)
-            } else {
-                requireContext().showToast("Yorumunuz eklenemedi")
+            if(it != null){
+                if (it) {
+                    viewModel.getComments(args.coin)
+                } else {
+                    requireContext().showToast("Yorumunuz eklenemedi")
+                }
             }
         }
     }

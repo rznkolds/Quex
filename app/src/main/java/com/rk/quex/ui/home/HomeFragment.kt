@@ -56,7 +56,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             if (!it.isNullOrEmpty()) {
                 coinRecycler.adapter = adapter
                 adapter.setData(it)
+                return@observe
             }
+
         }
 
         viewModel.picture.observe(viewLifecycleOwner) {
