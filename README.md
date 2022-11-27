@@ -14,20 +14,16 @@
 
 | Sign In | Sign Up | Home |
 | ------ | ---- | ------ |
-<img src="https://drive.google.com/file/d/14rLoltYZJKiJHTCm0nqdB8EiYnYDOjYU/view?usp=sharing" width="250" height="500"/>|
-<img src="https://drive.google.com/file/d/14umFeTNqF0Ao5AhOHP3bEj8YBY1DAY48/view?usp=sharing" width="250" height="500"/>|
-<img src="https://drive.google.com/file/d/14j_ZuVTVjz_BllBdK-Ux-rk7JW9moiBT/view?usp=sharing" width="250" height="500"/>|
+<img src="https://user-images.githubusercontent.com/97980164/204120172-138804a7-4145-491a-aa54-2bf742f133c2.jpg" width="250" height="500"/>|<img src="https://user-images.githubusercontent.com/97980164/204120239-7f2ee6ca-f822-430c-a482-6756b1a1501b.jpg" width="250" height="500"/>|<img src="https://user-images.githubusercontent.com/97980164/204120272-cfe245dc-f58b-4d0d-9154-df48ff7f6121.jpg" width="250" height="500"/>|
 
 </br>
 
 | Profile | Comments | Notifications |
 | --- | ------- | ------- |
-<img src="https://drive.google.com/file/d/14kivwy9nwvTOuRk9HnnfnbTdvAA0KO6J/view?usp=sharing" width="250" height="500"/>|
-<img src="https://drive.google.com/file/d/14lHVZyxE4O7QawYJhlhUCmOVHzeVl1QL/view?usp=sharing" width= "250" height="500"/>|
-<img src="hthttps://drive.google.com/file/d/14nTJter1q5ie8c-R1RtfWXWti68HrFSI/view?usp=sharing" width="250" height="500"/>|
+<img src="https://user-images.githubusercontent.com/97980164/204120247-4b647e32-8d07-463f-a626-f0589056eb26.jpg" width="250" height="500"/>|<img src="https://user-images.githubusercontent.com/97980164/204120303-4072636d-9c01-4702-bdbd-81ab1b3a3739.jpg" width= "250" height="500"/>|<img src="https://user-images.githubusercontent.com/97980164/204120331-ffcb1db7-0e2a-4d9e-b3c2-fb48d4b2ba95.jpg" width="250" height="500"/>|
 
 </br>
 
 | Answers | 
 | --------- |
-<img src="https://drive.google.com/file/d/14qUxpfsfo5aoup3uLl5PqQei98dq91VN/view?usp=sharing" width="250" height="500"/>
+|<img src="https://user-images.githubusercontent.com/97980164/204120353-54672a90-1988-4ed7-b4fa-96f3e31fd2e7.jpg" width="250" height="500"/>
