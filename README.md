@@ -1,4 +1,4 @@
-# E-Commerce-App
+# Quex
 
 ### Crypto interpretation application
 
