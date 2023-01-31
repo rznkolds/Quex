@@ -12,7 +12,9 @@ import com.rk.quex.common.checkNetwork
 import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentSignInBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
     private val binding by viewBinding(FragmentSignInBinding::bind)

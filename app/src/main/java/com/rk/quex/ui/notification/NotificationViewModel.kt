@@ -2,13 +2,15 @@ package com.rk.quex.ui.notification
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Notification
 import com.rk.quex.data.repository.CoinRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NotificationViewModel : ViewModel() {
-
-    private val coinRepo = CoinRepo()
+@HiltViewModel
+class NotificationViewModel @Inject constructor(private val coinRepo: CoinRepo) : ViewModel() {
 
     private var _notifications = MutableLiveData<ArrayList<Notification>>()
     val notifications: LiveData<ArrayList<Notification>>

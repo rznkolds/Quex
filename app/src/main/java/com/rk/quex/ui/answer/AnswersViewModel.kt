@@ -6,10 +6,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Answer
 import com.rk.quex.data.repository.CoinRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AnswersViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-
-    private var coinRepo = CoinRepo()
+@HiltViewModel
+class AnswersViewModel @Inject constructor(
+    private val coinRepo: CoinRepo,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     private var _answers = MutableLiveData<ArrayList<Answer>>()
     val answers: LiveData<ArrayList<Answer>>

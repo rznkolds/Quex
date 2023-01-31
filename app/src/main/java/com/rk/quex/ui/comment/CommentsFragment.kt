@@ -16,7 +16,9 @@ import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentCommentsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CommentsFragment : Fragment(R.layout.fragment_comments) {
 
     private val binding by viewBinding(FragmentCommentsBinding::bind)

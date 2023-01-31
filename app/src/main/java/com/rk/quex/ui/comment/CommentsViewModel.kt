@@ -6,10 +6,15 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Comment
 import com.rk.quex.data.repository.CoinRepo
+import com.rk.quex.data.repository.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CommentsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-
-    private var coinRepo = CoinRepo()
+@HiltViewModel
+class CommentsViewModel @Inject constructor(
+    private val coinRepo: CoinRepo,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     private var _comments = MutableLiveData<ArrayList<Comment>>()
     val comments: LiveData<ArrayList<Comment>>

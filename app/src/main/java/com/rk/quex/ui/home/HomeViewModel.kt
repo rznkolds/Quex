@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Coin
 import com.rk.quex.data.repository.CoinRepo
-import com.rk.quex.data.repository.MemberRepo
+import com.rk.quex.data.repository.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-
-    private var coinRepo = CoinRepo()
-    private var memberRepo = MemberRepo()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val coinRepo: CoinRepo,
+    private val userRepo: UserRepo
+) : ViewModel(){
 
     private var _coins = MutableLiveData<ArrayList<Coin>>()
     val coins: LiveData<ArrayList<Coin>>
@@ -26,10 +29,10 @@ class HomeViewModel : ViewModel() {
         getPicture()
 
         _coins = coinRepo.coins
-        _picture = memberRepo.picture
+        _picture = userRepo.picture
     }
 
     private fun getCoins() = coinRepo.getCoins()
 
-    private fun getPicture() = memberRepo.getPicture()
+    private fun getPicture() = userRepo.getPicture()
 }

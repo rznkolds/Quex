@@ -1,23 +1,22 @@
 package com.rk.quex.data.repository
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.rk.quex.common.Retrofit
 import com.rk.quex.data.model.Status
 import com.rk.quex.data.model.User
+import com.rk.quex.data.remote.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class MemberRepo {
+class UserRepo @Inject constructor(private val userService: UserService) {
 
     private val auth by lazy { Firebase.auth }
     private val cloud by lazy { Firebase.storage.reference }
-    private val userService = Retrofit.userService()
     val result = MutableLiveData<Boolean>()
     val picture = MutableLiveData<Uri>()
     val user = MutableLiveData<User>()

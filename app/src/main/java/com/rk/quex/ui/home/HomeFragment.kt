@@ -12,7 +12,9 @@ import com.rk.quex.R
 import com.rk.quex.common.setPicture
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)

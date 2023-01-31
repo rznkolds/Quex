@@ -11,7 +11,9 @@ import com.rk.quex.R
 import com.rk.quex.common.setPicture
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val binding by viewBinding(FragmentProfileBinding::bind)

@@ -12,7 +12,9 @@ import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Answer
 import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentUpdateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpdateFragment : BottomSheetDialogFragment(R.layout.fragment_update) {
 
     private val binding by viewBinding(FragmentUpdateBinding::bind)

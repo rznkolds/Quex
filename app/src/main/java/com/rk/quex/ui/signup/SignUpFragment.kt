@@ -17,7 +17,9 @@ import com.rk.quex.common.setPicture
 import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentSignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     private val binding by viewBinding(FragmentSignUpBinding::bind)

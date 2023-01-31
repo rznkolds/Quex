@@ -7,12 +7,16 @@ import androidx.lifecycle.ViewModel
 import com.rk.quex.data.model.Favorite
 import com.rk.quex.data.model.User
 import com.rk.quex.data.repository.CoinRepo
-import com.rk.quex.data.repository.MemberRepo
+import com.rk.quex.data.repository.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-
-    private var memberRepo = MemberRepo()
-    private var coinRepo = CoinRepo()
+@HiltViewModel
+class ProfileViewModel@Inject constructor(
+    private val userRepo: UserRepo,
+    private val coinRepo: CoinRepo,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     private var _informations = MutableLiveData<User>()
     val informations: LiveData<User>
@@ -28,13 +32,13 @@ class ProfileViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
             getFavorites(it)
         }
 
-        _informations = memberRepo.user
+        _informations = userRepo.user
         _favorites = coinRepo.favorites
     }
 
-    fun outProfile() = memberRepo.outProfile()
+    fun outProfile() = userRepo.outProfile()
 
-    private fun getProfile(uid: String) = memberRepo.getProfile(uid)
+    private fun getProfile(uid: String) = userRepo.getProfile(uid)
 
     private fun getFavorites(uid: String) = coinRepo.getFavorites(uid)
 }

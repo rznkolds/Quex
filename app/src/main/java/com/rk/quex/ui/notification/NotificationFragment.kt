@@ -10,8 +10,9 @@ import com.rk.quex.R
 import com.rk.quex.common.showToast
 import com.rk.quex.common.viewBinding
 import com.rk.quex.databinding.FragmentNotificationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class NotificationFragment : Fragment(R.layout.fragment_notification) {
 
     private val binding by viewBinding(FragmentNotificationBinding::bind)

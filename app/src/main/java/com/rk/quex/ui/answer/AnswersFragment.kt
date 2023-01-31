@@ -1,6 +1,5 @@
 package com.rk.quex.ui.answer
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -10,15 +9,14 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.rk.quex.R
 import com.rk.quex.common.endsWith
 import com.rk.quex.common.viewBinding
 import com.rk.quex.data.model.Answer
-import com.rk.quex.data.model.Comment
 import com.rk.quex.databinding.FragmentAnswersBinding
-import com.rk.quex.ui.comment.CommentsFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AnswersFragment : Fragment(R.layout.fragment_answers) {
 
     private val binding by viewBinding(FragmentAnswersBinding::bind)

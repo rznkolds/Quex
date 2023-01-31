@@ -4,14 +4,16 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.rk.quex.common.Retrofit
 import com.rk.quex.data.model.*
+import com.rk.quex.data.remote.CoinService
+import com.rk.quex.data.remote.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import javax.inject.Inject
 
-class CoinRepo {
+class CoinRepo @Inject constructor(private val userService: UserService, private val coinService: CoinService) {
 
     val result = MutableLiveData<Boolean>()
     val coins = MutableLiveData<ArrayList<Coin>>()
@@ -22,9 +24,6 @@ class CoinRepo {
 
     private val auth by lazy { Firebase.auth }
     private val calendar by lazy { Calendar.getInstance() }
-
-    private val coinService = Retrofit.coinService()
-    private val userService = Retrofit.userService()
 
     fun getCoins() {
 

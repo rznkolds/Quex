@@ -2,12 +2,17 @@ package com.rk.quex.ui.signin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.rk.quex.data.repository.MemberRepo
+import com.rk.quex.data.repository.CoinRepo
+import com.rk.quex.data.repository.UserRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SignInViewModel : ViewModel() {
-
-    private var memberRepo = MemberRepo()
+@HiltViewModel
+class SignInViewModel @Inject constructor(
+    private val userRepo: UserRepo,
+) : ViewModel() {
 
     private var _result = MutableLiveData<Boolean>()
     val result : LiveData<Boolean>
@@ -18,7 +23,7 @@ class SignInViewModel : ViewModel() {
         get() = _fail
 
     init {
-        _result = memberRepo.result
+        _result = userRepo.result
     }
 
     fun login(email: String, password: String) {
@@ -30,7 +35,7 @@ class SignInViewModel : ViewModel() {
         }
 
         if (isValid){
-            memberRepo.login(email, password)
+            userRepo.login(email, password)
         } else {
             _fail.value = "Boş alanları doldurunuz"
         }
