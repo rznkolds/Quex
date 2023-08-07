@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/sign_in">
+
+    <fragment
+        android:id="@+id/sign_up"
+        android:name="com.rznkolds.presentation.ui.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up">
+
+        <action
+            android:id="@+id/action_sign_up_to_home"
+            app:destination="@id/home"
+            app:enterAnim="@anim/open_component_from_right"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_sign_up_to_sign_in"
+            app:destination="@id/sign_in"
+            app:enterAnim="@anim/open_component_from_left"
+            app:exitAnim="@anim/close_component_from_right"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/sign_in"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/sign_in"
+        android:name="com.rznkolds.presentation.ui.signin.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in">
+
+        <action
+            android:id="@+id/action_sign_in_to_sign_up"
+            app:destination="@id/sign_up"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_sign_in_to_home"
+            app:destination="@id/home"
+            app:enterAnim="@anim/open_component_from_right"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.rznkolds.presentation.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_comments"
+            app:destination="@id/comments"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_home_to_notification"
+            app:destination="@id/notification"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.rznkolds.presentation.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+
+        <argument
+            android:name="uid"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_profile_to_sign_in"
+            app:destination="@id/sign_in"
+            app:popUpTo="@id/main_navigation" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/comments"
+        android:name="com.rznkolds.presentation.ui.comment.CommentsFragment"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments">
+
+        <action
+            android:id="@+id/action_comments_to_answers"
+            app:destination="@id/answers"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right"
+            app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_comments_to_profile"
+            app:destination="@id/profile"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
+
+        <argument
+            android:name="coin"
+            app:argType="string" />
+
+        <argument
+            android:name="picture"
+            app:argType="string" />
+
+        <argument
+            android:name="price"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_comments_to_updateFragment"
+            app:destination="@id/update" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/answers"
+        android:name="com.rznkolds.presentation.ui.answer.AnswersFragment"
+        android:label="fragment_answers"
+        tools:layout="@layout/fragment_answers">
+
+        <action
+            android:id="@+id/action_answers_to_profile"
+            app:destination="@id/profile"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
+
+        <argument
+            android:name="uid"
+            app:argType="string" />
+
+        <argument
+            android:name="coin"
+            app:argType="string" />
+
+        <argument
+            android:name="date"
+            app:argType="integer" />
+
+        <argument
+            android:name="time"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_answers_to_updateFragment"
+            app:destination="@id/update" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/notification"
+        android:name="com.rznkolds.presentation.ui.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification">
+
+        <action
+            android:id="@+id/action_notification_to_answers"
+            app:destination="@id/answers"
+            app:enterAnim="@anim/open_component_from_right"
+            app:exitAnim="@anim/close_component_from_left"
+            app:popEnterAnim="@anim/open_component_from_left"
+            app:popExitAnim="@anim/close_component_from_right" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/update"
+        android:name="com.rznkolds.presentation.ui.update.UpdateFragment"
+        android:label="fragment_update">
+
+        <argument
+            android:name="model"
+            app:argType="string" />
+
+        <argument
+            android:name="comment"
+            app:argType="com.rznkolds.domain.model.CommentUI"
+            app:nullable="true" />
+
+        <argument
+            android:name="answer"
+            app:argType="com.rznkolds.domain.model.AnswerUI"
+            app:nullable="true" />
+
+    </dialog>
+
+</navigation>

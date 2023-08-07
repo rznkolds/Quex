@@ -1,0 +1,42 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name" translatable="false">Quex</string>
+
+    <!-- SIGN IN -->
+    <string name="mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">LOG IN</string>
+    <string name="sign_up_text">Don\'t have an account ? Then register</string>
+
+    <!-- SIGN UP -->
+    <string name="welcome_text">WELCOME</string>
+    <string name="account_name">Profile Name</string>
+    <string name="account_description">Profile Description</string>
+    <string name="create">CREATE</string>
+    <string name="sign_in_text">Do you have an account ? Then login</string>
+
+    <!-- HOME -->
+    <string name="profile">Profile</string>
+
+    <!-- NOTIFICATION -->
+    <string name="delete_all">Delete all</string>
+
+    <!-- PROFILE -->
+    <string name="favorites">Favorites</string>
+
+    <!-- COMMENTS -->
+    <string name="comments">Comments</string>
+    <string name="show">Show Answers</string>
+    <string name="write_comment">Write comment</string>
+
+    <!-- ANSWER -->
+    <string name="answers">Answers</string>
+    <string name="write_answer">Write answer</string>
+
+    <!-- Update -->
+    <string name="update_text">Text</string>
+
+    <!-- Menu -->
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+</resources>
